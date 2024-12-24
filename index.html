@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!-- =====BOX ICONS===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+        <title>Kazi Neyamul Hasan</title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+            <div class="nav__logo-container"></div>
+                <a href="#" class="nav__logo" style="font-family: 'Pacifico', cursive; font-size: 17px;">Neyamul Hasan</a>
+                <!-- <a href="#" class="nav__logo">Neyamul Hasan</a> -->
+                <a href="assets/My CV/neyamul-hasan-cv.pdf" class="button nav__cv-button" download>Download CV</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
+                <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                <li class="nav__item"><a href="#work" class="nav__link">Project</a></li>
+                <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--===== HOME =====-->
+            <section class="home bd-grid" id="home" style="background-image: url('assets/img/ney.png'); background-size: cover; background-position: center; height: 100vh;">
+                <div class="home__content" style="background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                    <div class="home__text">
+                        <h1 class="home__title" style="color: #fff;">Hello,<br>I'm <span class="home__title-color">Neyamul</span><br> CS Student</h1>
+                        <p class="home__description" style="color: #fff;">Passionate about coding and technology—let's collaborate to create something amazing together!</p>
+                        <a href="#contact" class="button">Get in Touch</a>
+                    </div>
+                    <div class="home__social" style="background: rgba(53, 53, 53, 0.5); padding: 10px; border-radius: 10px; display: flex; justify-content: space-around; align-items: center; margin-top: 10px;">
+                        <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s; display: flex; align-items: center;">
+                            <i class='bx bxl-linkedin'></i>
+                        </a>
+                        <a href="https://codeforces.com/profile/Neyamul_Hasan" class="home__social-icon" style="display: flex; align-items: center; color: #fff; font-size: 24px; transition: transform 0.3s;">
+                            <img src="assets/img/codeforces.png" alt="Codeforces" class="social-icon-img" width="24" height="24" style="margin-right: 5px;">
+                        </a>
+                        <a href="https://www.hackerrank.com/profile/neyamulhasan14" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s;">
+                            <img src="assets/img/hackerrank.png" alt="Hackerrank" class="social-icon-img" width="24" height="24" style="margin-right: 5px;">
+                        </a>
+                        <a href="https://github.com/neyamul-hasan14" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s;">
+                            <i class='bx bxl-github'></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <style>
+                .home__social-icon:hover {
+                    transform: scale(1.2);
+                }
+            </style>
+
+            <!--===== ABOUT =====-->
+            <section class="about section " id="about">
+                <h2 class="section-title">About</h2>
+
+                <div class="about__container bd-grid">
+                    <div class="about__img">
+                        <img src="assets/img/neyamul1.jpg" alt="" id="about-img">
+                        <div class="about__img-controls">
+                            <button id="prev-img" class="about__img-btn">&#10094;</button>
+                            <button id="next-img" class="about__img-btn">&#10095;</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="about__subtitle">I'am Neyamul</h2>
+                        <p class="about__text">Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering. Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.</p>           
+                    </div>                                   
+                </div>
+            </section>
+
+            <style>
+                .about__img {
+                    position: relative;
+                }
+                .about__img-controls {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    transform: translateY(-50%);
+                }
+                .about__img-btn {
+                    background: rgba(0, 0, 0, 0.5);
+                    color: #fff;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                }
+            </style>
+
+            <script>
+                const images = [
+                    'assets/img/neyamul1.jpg',
+                    'assets/img/neyamul2.jpg',
+                    'assets/img/neyamul3.jpg',
+                    'assets/img/neyamul4.jpg',
+                    'assets/img/neyamul5.jpg',
+                    'assets/img/neyamul6.jpg'
+
+                ];
+                let currentImageIndex = 0;
+
+                document.getElementById('prev-img').addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    document.getElementById('about-img').src = images[currentImageIndex];
+                });
+
+                document.getElementById('next-img').addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    document.getElementById('about-img').src = images[currentImageIndex];
+                });
+            </script>
+
+
+
+
+            <!--===== EDUCATION =====-->
+            <section class="education section" id="education">
+                <h2 class="section-title">Academic Background</h2>
+
+                <div class="education__container bd-grid">
+                    <div class="education__content">
+                        <img src="assets/img/university.jpg" alt="University Logo" class="education__logo">
+                        <div>
+                            <h3 class="education__title">Bachelor</h3>
+                            <span class="education__subtitle">United International University, 2022 - Present</span>
+                            <p class="education__description"><strong>Computer Science and Engineering</strong> <br>CGPA __</p>
+                        </div>
+                    </div>
+                    <div class="education__content">
+                        <img src="assets/img/college.jpg" alt="College Logo" class="education__logo">
+                        <div>
+                            <h3 class="education__title">Higher Secondary Certificate</h3>
+                            <span class="education__subtitle">Paruara Abdul Matin Khasru College, 2020 - 2021</span>
+                            <p class="education__description"><strong>Science</strong> <br>Achieved  GPA  5.05 out of 5.0.</p>
+                        </div>
+                    </div>
+                    <div class="education__content">
+                        <img src="assets/img/school.jpg" alt="High School Logo" class="education__logo">
+                        <div>
+                            <h3 class="education__title">Secondary School Certificate</h3>
+                            <span class="education__subtitle">Oxford International School & College Debidwar,Cumilla , 2018 - 2019</span>
+                            <p class="education__description"><strong>Science</strong> <br>Achieved GPA  5.0 out of 5.0.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <style>
+                .education__container {
+                    display: grid;
+                    gap: 2rem;
+                }
+                .education__content {
+                    display: flex;
+                    align-items: center;
+                    background: #fff;
+                    padding: 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s, box-shadow 0.3s;
+                }
+                .education__content:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                }
+                .education__logo {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 1rem;
+                }
+                .education__title {
+                    font-size: 1.6rem;
+                    font-weight: bold;
+                    color: #333;
+                    margin-bottom: 0.5rem;
+                }
+                .education__subtitle {
+                    font-size: 1.2rem;
+                    color: #777;
+                    margin-bottom: 1rem;
+                }
+                .education__description {
+                    font-size: 1rem;
+                    color: #555;
+                    line-height: 1.6;
+                }
+            </style>
+            
+
+
+            <!--===== SKILLS =====-->
+            <section class="skills section" id="skills">
+                <h2 class="section-title">Skills</h2>
+
+                <div class="skills__container bd-grid">          
+                    <div class="skills__column"></div>
+                        <h2 class="skills__subtitle">Professional Skills</h2>
+                        <p class="skills__text">Passionate about coding and technology. Here are some of my professional skills:</p>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-c-plus-plus skills__icon'></i>
+                                <span class="skills__name">C/C++</span>
+                            </div>
+                            <div class="skills__bar skills__cpp"></div>
+                            <div>
+                                <span class="skills__percentage">96%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-java skills__icon' ></i>
+                                <span class="skills__name">Java</span>
+                            </div>
+                            <div class="skills__bar skills__java"></div>
+                            <div>
+                                <span class="skills__percentage">75%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-html5 skills__icon'></i>
+                                <span class="skills__name">HTML5</span>
+                            </div>
+                            <div class="skills__bar skills__html"></div>
+                            <div>
+                                <span class="skills__percentage">93%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-css3 skills__icon'></i>
+                                <span class="skills__name">CSS3</span>
+                            </div>
+                            <div class="skills__bar skills__css"></div>
+                            <div>
+                                <span class="skills__percentage">85%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-javascript skills__icon'></i>
+                                <span class="skills__name">JavaScript</span>
+                            </div>
+                            <div class="skills__bar skills__js"></div>
+                            <div>
+                                <span class="skills__percentage">75%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxs-paint skills__icon'></i>
+                                <span class="skills__name">Web Design</span>
+                            </div>
+                            <div class="skills__bar skills__ux"></div>
+                            <div>
+                                <span class="skills__percentage">85%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-python skills__icon' ></i>
+                                <span class="skills__name">Python</span>
+                            </div>
+                            <div class="skills__bar skills__python"></div>
+                            <div>
+                                <span class="skills__percentage">85%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-mysql skills__icon' ></i>
+                                <span class="skills__name">MySQL</span>
+                            </div>
+                            <div class="skills__bar skills__mysql"></div>
+                            <div>
+                                <span class="skills__percentage">82%</span>
+                            </div>
+                        </div>
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bxl-php skills__icon' ></i>
+                                <span class="skills__name">PHP</span>
+                            </div>
+                            <div class="skills__bar skills__php"></div>
+                            <div>
+                                <span class="skills__percentage">68%</span>
+                            </div>
+                        </div>
+                </div>
+            </section>
+
+            <style>
+         /* ===== SKILLS ===== */
+                .skills__container {
+                    row-gap: 2rem;
+                    text-align: center;
+                    display: grid;
+                    gap: 2rem;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                }
+
+                .skills__subtitle {
+                    margin-bottom: var(--mb-2);
+                }
+
+                .skills__text {
+                    margin-bottom: var(--mb-4);
+                }
+
+                .skills__data {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    position: relative;
+                    font-weight: var(--font-semi);
+                    padding: 0.5rem 1rem;
+                    margin-bottom: var(--mb-4);
+                    border-radius: 0.5rem;
+                    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+                }
+
+                .skills__icon {
+                    font-size: 2rem;
+                    margin-right: var(--mb-2);
+                }
+
+                .skills__names {
+                    display: flex;
+                    align-items: center;
+                    width: 150px;
+                }
+
+                /* Updated skills bar base styling */
+                .skills__bar {
+                    height: 10px;
+                    background: #ddd;
+                    border-radius: 5px;
+                    flex: 1;
+                    margin: 0 1rem;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                /* Change to use a custom property for dynamic percentages */
+                .skills__bar::before {
+                    content: '';
+                    position: absolute;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                    border-radius: 5px;
+                    transition: width 0.5s ease;
+                }
+
+                /* Individual skill colors and percentages */
+                .skills__html::before {
+                    width: var(--percent, 93%);
+                    background: #e34c26;
+                }
+
+                .skills__css::before {
+                    width: var(--percent, 85%);
+                    background: #264de4;
+                }
+
+                .skills__js::before {
+                    width: var(--percent, 75%);
+                    background: #f0db4f;
+                }
+
+                .skills__ux::before {
+                    width: var(--percent, 85%);
+                    background: #ff6347;
+                }
+
+                .skills__cpp::before {
+                    width: var(--percent, 96%);
+                    background: #00599c;
+                }
+
+                .skills__java::before {
+                    width: var(--percent, 75%);
+                    background: #007396;
+                }
+
+                .skills__php::before {
+                    width: var(--percent, 68%);
+                    background: #4f5b93;
+                }
+
+                .skills__mysql::before {
+                    width: var(--percent, 82%);
+                    background: #00758f;
+                }
+
+                .skills__python::before {
+                    width: var(--percent, 100%);
+                    background: #306998;
+                }
+
+                .skills__percentage {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                /* Responsive fixes */
+                @media screen and (max-width: 768px) {
+                    .skills__container {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .skills__data {
+                        padding: 0.25rem 0.5rem;
+                    }
+
+                    .skills__names {
+                        width: 120px;
+                    }
+
+                    .skills__bar {
+                        margin: 0 0.5rem;
+                    }
+                }
+
+                /* Fix for the column issue */
+                .skills__column {
+                    display: contents;
+                }
+
+                /* Fix for shadow and spacing */
+                .skills__data {
+                    background: #fff;
+                    margin-bottom: 1rem;
+                }
+
+                /* Ensure proper text alignment */
+                .skills__text, .skills__subtitle {
+                    text-align: center;
+                    grid-column: 1 / -1;
+                }
+                            </style>
+
+
+
+                <script>
+                    // Add this script at the end of your body tag
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Get all skill bars
+                        const skillBars = document.querySelectorAll('.skills__bar');
+                        
+                        // For each skill bar, get the corresponding percentage
+                        skillBars.forEach(bar => {
+                            const parentDiv = bar.closest('.skills__data');
+                            const percentageSpan = parentDiv.querySelector('.skills__percentage');
+                            const percentage = percentageSpan.textContent;
+                            
+                            // Set the custom property for the width
+                            bar.style.setProperty('--percent', percentage);
+                        });
+                    });
+                </script>
+
+
+
+
+            <!--===== WORK =====-->
+            <section class="work section" id="work">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="work__container bd-grid">
+                    <a href="https://github.com/neyamul-hasan14/Automatic-Garbage-Collector-with-Live-Image-Detection-using-ESP32-and-Laptop-for-webcam" class="work__img">
+                        <img src="assets/img/project1.jpg" alt="">
+                        <div class="work__img-text">Project 1: Automatic Garbage Collector with Live Image Detection
+                            using ESP32 and Laptop for Webcam.</div>
+                    </a>
+                    <a href="https://github.com/neyamul-hasan14/Calendar-Generator-" class="work__img">
+                        <img src="assets/img/project2.jpg" alt="">
+                        <div class="work__img-text">Project 2: simple Calendar Gen (C/Java/C++) This project generates a calendar for any given year. <strong>Note: Implementation varies by language.Can be used as a template for other calendar projects.</strong></div>
+                    </a>
+                    <a href="" class="work__img">
+                        <img src="assets/img/noup.jpeg" alt="">
+                        <div class="work__img-text">Project 3: A mobile app for tracking fitness and health metrics.</div>
+                    </a>
+                    <a href="" class="work__img">
+                        <img src="assets/img/noup.jpeg" alt="">
+                        <div class="work__img-text">Project 4: A social media platform for connecting with friends and family.</div>
+                    </a>
+                    
+                    
+                    <a href="" class="work__img">
+                        <img src="assets/img/noup.jpeg" alt="">
+                        <div class="work__img-text">Project 5: A blog website with a content management system.</div>
+                    </a>
+
+                    <!--
+                    <a href="" class="work__img">
+                        <img src="assets/img/work6.jpg" alt="">
+                        <div class="work__img-text">Project 6: A portfolio website showcasing various projects and skills.</div>
+                    </a>
+                    <a href="" class="work__img">
+                        <img src="assets/img/work7.jpg" alt="">
+                        <div class="work__img-text">Project 7: A real-time chat application for seamless communication.</div>
+                    </a>
+                    <a href="" class="work__img">
+                        <img src="assets/img/work8.jpg" alt="">
+                        <div class="work__img-text">Project 8: A weather forecasting app with accurate predictions.</div>
+                    </a> 
+                    
+                    -->
+                </div>
+            </section>
+
+            <style>
+                .work__img {
+                    position: relative;
+                }
+                .work__img-text {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.5);
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                }
+            </style>
+
+            <!--===== CONTACT =====-->
+            <section class="contact section" id="contact">
+                <h2 class="section-title">Anonymous Messages</h2>
+
+                <div class="contact__container bd-grid">
+                    <form action="https://formspree.io/f/mkgggonn" method="POST" class="contact__form" onsubmit="return validateForm()">
+                        <input type="text" name="name" placeholder="Name (optional)" class="contact__input">
+                        <textarea name="message" cols="0" rows="10" class="contact__input" placeholder="Anonymous Messages" id="message"></textarea>
+                        <input type="submit" value="SEND" class="contact__button button">
+                    </form>
+                    <script>
+                        function validateForm() {
+                            const message = document.getElementById('message').value.trim();
+                            if (message === "") {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Message cannot be empty.',
+                                });
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                </div>
+            </section>
+
+            <style>
+                .contact__container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 2rem;
+                }
+                .contact__form {
+                    background: #0909097d;
+                    padding: 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    width: 100%;
+                    max-width: 500px;
+                }
+                .contact__input {
+                    width: 100%;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+                .contact__button {
+                    width: 100%;
+                    padding: 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    background: #333;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            </style>
+        </main>
+
+        
+
+        <!--===== FOOTER =====-->
+        <footer class="footer">
+            <p class="footer__title">CONTACT</p>
+            <div class="footer__social">
+            <a href="https://www.facebook.com/neyamul.hasan.44154" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
+            <a href="https://www.instagram.com/neyamulhasan_/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
+            <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+            <a href="mailto:neyamulhasan14@gmail.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+            <a href="https://wa.me/+8801625762001" class="footer__icon"><i class='bx bxl-whatsapp' ></i></a>
+            </div>
+            <p class="footer__copy">&#169;<strong>2024</strong> Neyamul Hasan. All rights reserved</p>
+        </footer>
+
+
+        <!--===== SCROLL REVEAL =====-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
+
+
+<script>
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+  </script>
+
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F12' || (e.ctrlKey && (e.key === 'u' || e.key === 'i' || e.key === 'j'))) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+<style>
+    body {
+      user-select: none;
+    }
+  </style>
+<FilesMatch "\.(html|js|css|php|txt)$">
+    Order Allow,Deny
+    Deny from all
+  </FilesMatch>
+    
+  
