@@ -78,6 +78,7 @@ img{
     margin-bottom: var(--mb-4);
     text-align: center;
 
+   /*
     &::after{
         position: absolute;
         content: '';
@@ -89,6 +90,7 @@ img{
         top: 2rem;
         background-color: var(--first-color);
     }
+    */
 }
 .section{
     padding-top: 3rem;
