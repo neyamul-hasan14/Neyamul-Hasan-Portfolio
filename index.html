@@ -4,66 +4,685 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <!-- Prevent Flash of Content -->
+        <script>
+            // Hide the body until the page is fully loaded
+            document.documentElement.style.visibility = 'hidden';
+            window.addEventListener('load', function() {
+                document.documentElement.style.visibility = 'visible';
+            });
+        </script>
+
+        <!-- Add Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#00F5FF',
+                            secondary: '#7000FF',
+                            dark: '#0A0A0A',
+                            accent: '#FF00E5',
+                            neon: {
+                                blue: '#00F5FF',
+                                purple: '#7000FF',
+                                pink: '#FF00E5',
+                                green: '#00FF9D'
+                            }
+                        },
+                        animation: {
+                            'gradient': 'gradient 8s linear infinite',
+                            'float': 'float 6s ease-in-out infinite',
+                            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        },
+                        keyframes: {
+                            gradient: {
+                                '0%, 100%': {
+                                    'background-size': '200% 200%',
+                                    'background-position': 'left center'
+                                },
+                                '50%': {
+                                    'background-size': '200% 200%',
+                                    'background-position': 'right center'
+                                },
+                            },
+                            float: {
+                                '0%, 100%': { transform: 'translateY(0)' },
+                                '50%': { transform: 'translateY(-20px)' },
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
 
         <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
+        <!-- Add Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
         <title>Kazi Neyamul Hasan</title>
+
+        <style>
+            body {
+                font-family: 'Space Grotesk', sans-serif;
+                background-color: #050505;
+                color: #fff;
+                background-image: 
+                    linear-gradient(rgba(5, 5, 5, 0.98), rgba(5, 5, 5, 0.98)),
+                    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300F5FF' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                line-height: 1.6;
+            }
+            html {
+                scroll-padding-top: 64px; /* Adjust this value to match your header height */
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: #d1d1d1 !important;  /* Softer white color */
+                font-weight: 600;
+            }
+            .neon-text {
+                text-shadow: 0 0 10px rgba(0, 245, 255, 0.7),
+                             0 0 20px rgba(0, 245, 255, 0.5),
+                             0 0 30px rgba(0, 245, 255, 0.3);
+            }
+            .neon-border {
+                border: 1px solid rgba(0, 245, 255, 0.3);
+                box-shadow: 0 0 15px rgba(0, 245, 255, 0.2),
+                           inset 0 0 15px rgba(0, 245, 255, 0.1);
+            }
+            .cyber-border {
+                position: relative;
+                border: 1px solid rgba(0, 245, 255, 0.1);
+                box-shadow: 0 4px 24px rgba(0, 245, 255, 0.05);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .cyber-border:hover {
+                border-color: rgba(0, 245, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 245, 255, 0.1);
+            }
+            .cyber-border::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                background: linear-gradient(45deg, #00F5FF, #7000FF, #FF00E5, #00F5FF);
+                background-size: 400% 400%;
+                z-index: -1;
+                animation: gradient 8s linear infinite;
+                border-radius: inherit;
+            }
+            .glass-effect {
+                background: rgba(10, 10, 10, 0.85);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(0, 245, 255, 0.05);
+                box-shadow: 0 4px 24px rgba(0, 245, 255, 0.05);
+            }
+            .scan-line {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(to right, transparent, rgba(0, 245, 255, 0.3), transparent);
+                animation: scan 4s linear infinite;
+                pointer-events: none;
+            }
+            .cyber-grid {
+                background-image: 
+                    linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .glow-effect {
+                animation: glow 2s ease-in-out infinite;
+            }
+            .section-bg {
+                position: relative;
+                overflow: hidden;
+            }
+            .section-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(0, 245, 255, 0.03), rgba(112, 0, 255, 0.03));
+                z-index: -1;
+            }
+            .card-hover {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 32px rgba(0, 245, 255, 0.15);
+            }
+            .button-glow {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .button-glow:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(0, 245, 255, 0.15);
+            }
+            .button-glow::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+                transform: rotate(45deg);
+                animation: button-glow 3s linear infinite;
+            }
+            @keyframes button-glow {
+                0% { transform: translateX(-100%) rotate(45deg); }
+                100% { transform: translateX(100%) rotate(45deg); }
+            }
+            @keyframes scan {
+                0% { transform: translateY(-100%); }
+                100% { transform: translateY(100%); }
+            }
+            .text-gradient {
+                color: #d1d1d1 !important;
+                -webkit-text-fill-color: #d1d1d1 !important;
+                background: none !important;
+            }
+            .border-glow {
+                position: relative;
+            }
+            .border-glow::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                background: linear-gradient(45deg, #00F5FF, #7000FF, #FF00E5, #00F5FF);
+                background-size: 400% 400%;
+                z-index: -1;
+                animation: gradient 8s linear infinite;
+                border-radius: inherit;
+            }
+            .skill-card {
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .skill-card:hover {
+                background: rgba(255, 255, 255, 0.03);
+                transform: translateY(-5px);
+                box-shadow: 0 8px 32px rgba(0, 245, 255, 0.08);
+            }
+            .project-card {
+                position: relative;
+                overflow: hidden;
+                border-radius: 1rem;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 32px rgba(0, 245, 255, 0.1);
+            }
+            .project-card img {
+                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .project-card:hover img {
+                transform: scale(1.05);
+            }
+            .contact-input {
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+            }
+            .contact-input:focus {
+                background: rgba(255, 255, 255, 0.03);
+                border-color: rgba(0, 245, 255, 0.2);
+                box-shadow: 0 0 20px rgba(0, 245, 255, 0.05);
+            }
+            .nav-link {
+                position: relative;
+                transition: color 0.3s ease;
+            }
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: linear-gradient(90deg, #00F5FF, #7000FF);
+                transition: width 0.3s ease;
+            }
+            .nav-link:hover::after {
+                width: 100%;
+            }
+            .code-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                opacity: 0.2;
+                pointer-events: none;
+                z-index: 0;
+                padding: 2rem;
+            }
+            .code-line {
+                position: absolute;
+                color: #00F5FF;
+                font-family: 'Courier New', monospace;
+                font-size: 16px;
+                font-weight: 500;
+                white-space: nowrap;
+                opacity: 0;
+                text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+                animation: typeWriter 4s steps(40, end) forwards;
+            }
+            .code-line:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+            .code-line:nth-child(2) { top: 20%; left: 5%; animation-delay: 4s; }
+            .code-line:nth-child(3) { top: 30%; left: 5%; animation-delay: 8s; }
+            .code-line:nth-child(4) { top: 40%; left: 5%; animation-delay: 12s; }
+            .code-line:nth-child(5) { top: 50%; left: 5%; animation-delay: 16s; }
+            .code-line:nth-child(6) { top: 60%; left: 5%; animation-delay: 20s; }
+            .code-line:nth-child(7) { top: 70%; left: 5%; animation-delay: 24s; }
+            .code-line:nth-child(8) { top: 80%; left: 5%; animation-delay: 28s; }
+            .code-line:nth-child(9) { top: 90%; left: 5%; animation-delay: 32s; }
+
+            @keyframes typeWriter {
+                0% {
+                    width: 0;
+                    opacity: 0;
+                }
+                1% {
+                    opacity: 1;
+                }
+                100% {
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
+
+            .code-line::after {
+                content: '|';
+                animation: blink 1s step-end infinite;
+            }
+
+            @keyframes blink {
+                from, to { opacity: 1; }
+                50% { opacity: 0; }
+            }
+
+            .light-scan {
+                position: relative;
+                overflow: hidden;
+            }
+            .light-scan::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.015),
+                    rgba(255, 255, 255, 0.02),
+                    rgba(255, 255, 255, 0.015),
+                    transparent
+                );
+                animation: light-scan 6s ease-in-out infinite;
+                filter: blur(8px);
+            }
+            @keyframes light-scan {
+                0% {
+                    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(100%) translateY(100%) rotate(45deg);
+                    opacity: 0;
+                }
+            }
+            .section-title {
+                color: #d1d1d1 !important;
+            }
+            .text-white {
+                color: #d1d1d1 !important;
+            }
+            .text-gray-300 {
+                color: #d1d1d1 !important;
+            }
+            .text-gray-400 {
+                color: #a0a0a0 !important;  /* Softer gray for secondary text */
+            }
+            .homehead-img {
+                position: absolute;
+                bottom: -200px; /* Adjusted to be lower initially */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                height: auto;
+                opacity: 0;
+                transition: all 1000ms ease-out;
+                z-index: 0;
+                pointer-events: none;
+            }
+            .homehead-img.is-visible {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        
+            /* Mobile adjustments for homehead image */
+            @media (max-width: 768px) {
+                .homehead-img {
+                    bottom: -300px;
+                    transform: translateX(-50%) translateY(100%);
+                }
+                .homehead-img.is-visible {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0) scale(1);
+                }
+            }
+
+            .skills-marquee-container {
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                margin: 2rem auto;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            .skills-marquee {
+                display: flex;
+                white-space: nowrap; /* Prevent wrapping */
+                animation: marquee 40s linear infinite; /* Slow down the animation */
+                /* Adjust duration as needed */
+                width: 9999px; /* Ensure enough width for all items */
+            }
+
+            @keyframes marquee {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                    /* Adjust to half the width of duplicated content */
+                }
+            }
+
+            .skill-card {
+                /* Ensure consistent width for scrolling */
+                flex-shrink: 0;
+                width: 250px; /* Adjust width as needed */
+                margin-right: 2rem; /* Add space between cards */
+            }
+            
+            .skill-card i { /* Target icons within skill cards */
+                filter: grayscale(100%); /* Apply grayscale filter */
+                transition: filter 0.3s ease; /* Optional: Add a smooth transition */
+            }
+
+            .skill-card:hover i { /* Optional: Revert grayscale on hover */
+                filter: grayscale(0%);
+            }
+            
+            /* Add padding to the last card to ensure proper spacing at the end of the loop */
+            .skills-marquee .skill-card:last-child {
+                margin-right: 0;
+            }
+
+            /* Enhanced torch light effects */
+            .torch-light {
+                position: absolute;
+                bottom: -100%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 300px;
+                filter: blur(20px);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .torch-light-1 {
+                background: radial-gradient(
+                    circle at center,
+                    rgba(0, 245, 255, 0.2) 0%,
+                    rgba(0, 245, 255, 0.1) 30%,
+                    rgba(0, 245, 255, 0.05) 60%,
+                    transparent 100%
+                );
+                animation: torchRise1 4s ease-out infinite;
+                width: 400px;
+                height: 400px;
+            }
+
+            .torch-light-2 {
+                background: radial-gradient(
+                    circle at center,
+                    rgba(112, 0, 255, 0.2) 0%,
+                    rgba(112, 0, 255, 0.1) 30%,
+                    rgba(112, 0, 255, 0.05) 60%,
+                    transparent 100%
+                );
+                animation: torchRise2 5s ease-out infinite;
+                width: 350px;
+                height: 350px;
+                left: 30%;
+            }
+
+            .torch-light-3 {
+                background: radial-gradient(
+                    circle at center,
+                    rgba(255, 0, 229, 0.2) 0%,
+                    rgba(255, 0, 229, 0.1) 30%,
+                    rgba(255, 0, 229, 0.05) 60%,
+                    transparent 100%
+                );
+                animation: torchRise3 4.5s ease-out infinite;
+                width: 300px;
+                height: 300px;
+                left: 70%;
+            }
+
+            .torch-light-4 {
+                background: radial-gradient(
+                    circle at center,
+                    rgba(0, 255, 157, 0.2) 0%,
+                    rgba(0, 255, 157, 0.1) 30%,
+                    rgba(0, 255, 157, 0.05) 60%,
+                    transparent 100%
+                );
+                animation: torchRise4 5.5s ease-out infinite;
+                width: 250px;
+                height: 250px;
+                left: 45%;
+            }
+
+            @keyframes torchRise1 {
+                0% {
+                    bottom: -100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(0.8);
+                }
+                20% {
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+                80% {
+                    opacity: 1;
+                }
+                100% {
+                    bottom: 100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(1.2);
+                }
+            }
+
+            @keyframes torchRise2 {
+                0% {
+                    bottom: -100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(0.7);
+                }
+                25% {
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+                75% {
+                    opacity: 1;
+                }
+                100% {
+                    bottom: 100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(1.3);
+                }
+            }
+
+            @keyframes torchRise3 {
+                0% {
+                    bottom: -100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(0.9);
+                }
+                15% {
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+                85% {
+                    opacity: 1;
+                }
+                100% {
+                    bottom: 100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(1.1);
+                }
+            }
+
+            @keyframes torchRise4 {
+                0% {
+                    bottom: -100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(0.6);
+                }
+                30% {
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+                70% {
+                    opacity: 1;
+                }
+                100% {
+                    bottom: 100%;
+                    opacity: 0;
+                    transform: translateX(-50%) scale(1.4);
+                }
+            }
+        </style>
     </head>
-    <body>
+    <body class="bg-dark">
         <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-            <div class="nav__logo-container"></div>
-                <a href="#" class="nav__logo" style="font-family: 'Pacifico', cursive; font-size: 17px;">Neyamul Hasan</a>
-                <!-- <a href="#" class="nav__logo">Neyamul Hasan</a> -->
-               <!-- <a href="assets/My CV/neyamul-hasan-cv.pdf" class="button nav__cv-button" style="font-size: 14px; padding: 8px 12px;" download>Download CV</a> -->
+        <header class="fixed w-full glass-effect z-50">
+            <div class="scan-line"></div>
+            <nav class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-2xl font-bold text-gradient hover:text-cyber-neon transition-colors duration-300">Neyamul Hasan</a>
+                    
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#home" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">About</a>
+                        <a href="#education" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Education</a>
+                        <a href="#skills" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Skills</a>
+                        <a href="#work" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Projects</a>
+                        <a href="#contact" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Contact</a>
             </div>
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
-                <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                <li class="nav__item"><a href="#work" class="nav__link">Project</a></li>
-                <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                </ul>
+                <button class="md:hidden text-gray-300 hover:text-cyber-neon focus:outline-none" id="nav-toggle">
+                    <i class='bx bx-menu text-2xl'></i>
+                </button>
             </div>
 
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden absolute top-full left-0 right-0 glass-effect rounded-b-lg z-50" id="nav-menu">
+                <div class="scan-line"></div>
+                <div class="px-4 py-3 space-y-2">
+                    <a href="#home" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">Home</a>
+                    <a href="#about" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">About</a>
+                    <a href="#education" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">Education</a>
+                    <a href="#skills" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">Skills</a>
+                    <a href="#work" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">Projects</a>
+                    <a href="#contact" class="block px-4 py-2 text-gray-300 hover:text-cyber-neon hover:bg-white/5 rounded-lg transition-colors duration-300">Contact</a>
+                </div>
             </div>
             </nav>
         </header>
 
-        <main class="l-main">
+        <main>
             <!--===== HOME =====-->
-            <section class="home bd-grid" id="home" style="background-image: url('assets/img/ney.png'); background-size: cover; background-position: center; height: 100vh;">
-                <div class="home__content" style="background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                    <div class="home__text">
-                        <h1 class="home__title" style="color: #fff;">Hello,<br>I'm <span class="home__title-color">Neyamul</span><br> CS Student</h1>
-                        <p class="home__description" style="color: #fff;">Passionate about coding and technology—let's collaborate to create something amazing together!</p>
-                        <a href="#contact" class="button">Get in Touch</a>
-                    </div>
-                    <div class="home__social" style="background: rgba(53, 53, 53, 0.5); padding: 10px; border-radius: 10px; display: flex; justify-content: space-around; align-items: center; margin-top: 10px;">
-                        <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s; display: flex; align-items: center;">
-                            <i class='bx bxl-linkedin'></i>
+            <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden section-bg pt-12 md:pt-0" id="home">
+                
+                <div class="code-background">
+                    <div class="code-line">class Portfolio {</div>
+                    <div class="code-line">    constructor() {</div>
+                    <div class="code-line">        this.name = "Neyamul Hasan";</div>
+                    <div class="code-line">        this.role = "CS Student";</div>
+                    <div class="code-line">        this.skills = ["C++", "Java", "Web Dev"];</div>
+                    <div class="code-line">    }</div>
+                    <div class="code-line">    async innovate() {</div>
+                    <div class="code-line">        while(true) {</div>
+                    <div class="code-line">            await this.learn();</div>
+                </div>
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="max-w-3xl mx-auto text-center mt-[-2rem] md:mt-[2rem]">
+                        <h1 class="text-4xl md:text-7xl font-bold mb-3 md:mb-4 text-gradient animate-float">
+                            Hello,<br>
+                            I'm <span class="text-cyber-neon">Neyamul</span><br>
+                            <span class="text-3xl md:text-6xl">CS Student</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-300 mb-4 md:mb-6">
+                            Passionate about coding and technology—let's collaborate to create something amazing together!
+                        </p>
+                        <a href="#contact" class="inline-block cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyber-neon/20">
+                            Get in Touch
                         </a>
-                        <a href="https://codeforces.com/profile/Neyamul_Hasan" class="home__social-icon" style="display: flex; align-items: center; color: #fff; font-size: 24px; transition: transform 0.3s;">
-                            <img src="assets/img/codeforces.png" alt="Codeforces" class="social-icon-img" width="24" height="24" style="margin-right: 5px;">
-                        </a>
-                        <a href="https://www.hackerrank.com/profile/neyamulhasan14" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s;">
-                            <img src="assets/img/hackerrank.png" alt="Hackerrank" class="social-icon-img" width="24" height="24" style="margin-right: 5px;">
-                        </a>
-                        <a href="https://github.com/neyamul-hasan14" class="home__social-icon" style="color: #fff; font-size: 24px; transition: transform 0.3s;">
-                            <i class='bx bxl-github'></i>
-                        </a>
+                        
+                        <div class="mt-6 md:mt-8 flex justify-center space-x-6">
+                            <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                                <i class='bx bxl-linkedin text-2xl md:text-3xl'></i>
+                            </a>
+                            <a href="https://codeforces.com/profile/Neyamul_Hasan" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                                <img src="assets/img/codeforces.png" alt="Codeforces" class="w-6 h-6 md:w-8 md:h-8">
+                            </a>
+                            <a href="https://www.hackerrank.com/profile/neyamulhasan14" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                                <img src="assets/img/hackerrank.png" alt="Hackerrank" class="w-6 h-6 md:w-8 md:h-8">
+                            </a>
+                            <a href="https://github.com/neyamul-hasan14" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                                <i class='bx bxl-github text-2xl md:text-3xl'></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            <!-- Add homehead image for background -->
+            <img src="assets/img/homehead.png" alt="Animated Heads" class="homehead-img absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-0 transition-all duration-1000 ease-out" style="width: 100%; max-width: 800px; z-index: 0; pointer-events: none;">
 
             <style>
                 .home__social-icon:hover {
@@ -72,43 +691,58 @@
             </style>
 
             <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+            <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden section-bg pt-12 md:pt-0" id="about">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="container mx-auto px-6 relative z-10 mt-0 md:mt-[-8rem]">
+                    <h2 class="text-4xl font-bold text-center text-gradient mb-12">About</h2>
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/neyamul1.jpg" alt="" id="about-img">
-                        <div class="about__img-controls">
-                            <button id="prev-img" class="about__img-btn">&#10094;</button>
-                            <button id="next-img" class="about__img-btn">&#10095;</button>
+                    <div class="grid md:grid-cols-2 gap-12 items-center max-w-4xl mx-auto pb-8">
+                        <div class="relative group max-w-md mx-auto">
+                            <div class="cyber-border rounded-xl overflow-hidden">
+                                <img src="assets/img/neyamul1.jpg" alt="" id="about-img" class="w-full h-auto max-h-[350px] object-contain transform group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-between px-4">
+                                <button id="prev-img" class="bg-black/50 text-white p-2 rounded-full hover:bg-cyber-neon/50 transition-all duration-300">
+                                    <i class='bx bx-chevron-left text-2xl'></i>
+                                </button>
+                                <button id="next-img" class="bg-black/50 text-white p-2 rounded-full hover:bg-cyber-neon/50 transition-all duration-300">
+                                    <i class='bx bx-chevron-right text-2xl'></i>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="space-y-6 max-w-lg">
+                            <h2 class="text-3xl font-bold text-gradient">I'm Neyamul</h2>
+                            <p class="text-lg text-gray-300 leading-relaxed">
+                                Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering. Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#contact" class="inline-block cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyber-neon/20">
+                                    Contact Me
+                                </a>
+                                <a href="assets/My CV/neyamul-hasan-cv.pdf" class="inline-block border-2 border-cyber-neon text-cyber-neon hover:bg-cyber-neon hover:text-white font-bold py-2 px-6 rounded-lg transition-all duration-300" download>
+                                    Download CV
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">I'am Neyamul</h2>
-                        <p class="about__text">Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering. Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.</p>           
-                    </div>                                   
                 </div>
             </section>
 
             <style>
-                .about__img {
+                .aspect-w-4 {
                     position: relative;
+                    padding-bottom: 75%; /* 4:3 Aspect Ratio */
                 }
-                .about__img-controls {
+                .aspect-w-4 > * {
                     position: absolute;
-                    top: 50%;
+                    height: 100%;
                     width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    transform: translateY(-50%);
-                }
-                .about__img-btn {
-                    background: rgba(0, 0, 0, 0.5);
-                    color: #fff;
-                    border: none;
-                    padding: 10px;
-                    cursor: pointer;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
                 }
             </style>
 
@@ -135,36 +769,54 @@
                 });
             </script>
 
-
-
-
             <!--===== EDUCATION =====-->
-            <section class="education section" id="education">
-                <h2 class="section-title">Academic Background</h2>
+            <section class="py-20 relative overflow-hidden section-bg" id="education">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <h2 class="text-4xl font-bold text-center text-gradient mb-12">Academic Background</h2>
 
-                <div class="education__container bd-grid">
-                    <div class="education__content">
-                        <img src="assets/img/university.jpg" alt="University Logo" class="education__logo">
-                        <div>
-                            <h3 class="education__title">Bachelor</h3>
-                            <span class="education__subtitle">United International University, 2022 - Present</span>
-                            <p class="education__description"><strong>Computer Science and Engineering</strong> <br>CGPA __</p>
+                    <div class="grid gap-8 max-w-4xl mx-auto">
+                        <div class="bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 transform hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-black/20 light-scan">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-16 h-16 flex-shrink-0 relative">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg"></div>
+                                    <img src="assets/img/university.jpg" alt="University Logo" class="w-full h-full object-contain relative z-10 rounded-lg">
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Bachelor</h3>
+                                    <p class="text-gray-400">United International University, 2022 - Present</p>
+                                    <p class="text-gray-400 mt-2"><strong class="text-white">Computer Science and Engineering</strong> <br>CGPA __</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="education__content">
-                        <img src="assets/img/college.jpg" alt="College Logo" class="education__logo">
-                        <div>
-                            <h3 class="education__title">Higher Secondary Certificate</h3>
-                            <span class="education__subtitle">Paruara Abdul Matin Khasru College, 2020 - 2021</span>
-                            <p class="education__description"><strong>Science</strong> <br>Achieved  GPA  5.0 out of 5.0</p>
+
+                        <div class="bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 transform hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-black/20 light-scan">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-16 h-16 flex-shrink-0 relative">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg"></div>
+                                    <img src="assets/img/college.jpg" alt="College Logo" class="w-full h-full object-contain relative z-10 rounded-lg">
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Higher Secondary Certificate</h3>
+                                    <p class="text-gray-400">Paruara Abdul Matin Khasru College, 2020 - 2021</p>
+                                    <p class="text-gray-400 mt-2"><strong class="text-white">Science</strong> <br>Achieved GPA 5.0 out of 5.0</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="education__content">
-                        <img src="assets/img/school.jpg" alt="High School Logo" class="education__logo">
-                        <div>
-                            <h3 class="education__title">Secondary School Certificate</h3>
-                            <span class="education__subtitle">Oxford International School & College Debidwar,Cumilla , 2018 - 2019</span>
-                            <p class="education__description"><strong>Science</strong> <br>Achieved GPA  5.0 out of 5.0</p>
+
+                        <div class="bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 transform hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-black/20 light-scan">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-16 h-16 flex-shrink-0 relative">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg"></div>
+                                    <img src="assets/img/school.jpg" alt="High School Logo" class="w-full h-full object-contain relative z-10 rounded-lg">
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Secondary School Certificate</h3>
+                                    <p class="text-gray-400">Oxford International School & College Debidwar, Cumilla, 2018 - 2019</p>
+                                    <p class="text-gray-400 mt-2"><strong class="text-white">Science</strong> <br>Achieved GPA 5.0 out of 5.0</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -214,324 +866,326 @@
 
 
             <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
+            <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden section-bg" id="skills" style="min-height: 100vh; justify-content: center;">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="torch-light torch-light-1"></div>
+                <div class="torch-light torch-light-2"></div>
+                <div class="torch-light torch-light-3"></div>
+                <div class="torch-light torch-light-4"></div>
+                <div class="container mx-auto px-6 relative z-10" style="margin-top: -10vh;">
+                    <h2 class="text-4xl font-bold text-center text-gradient mb-8">Skills</h2>
 
-                <div class="skills__container bd-grid">          
-                    <div class="skills__column"></div>
-                        <h2 class="skills__subtitle">Professional Skills</h2>
-                        <p class="skills__text">Passionate about coding and technology. Here are some of my professional skills:</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-c-plus-plus skills__icon'></i>
-                                <span class="skills__name">C/C++</span>
-                            </div>
-                            <div class="skills__bar skills__cpp"></div>
-                            <div>
-                                <span class="skills__percentage">96%</span>
-                            </div>
+                    <!-- Skills Headlines Marquee 1 -->
+                    <h5 class="text-2xl font-bold text-center text-gradient mb-6">Technical Skills . CS Fundamentals . Soft Skills</h5>
+                    <div class="skills-headline-marquee-container w-full overflow-hidden relative mb-2 border-y border-white/10 py-2">
+                        
+                        <div class="skills-headline-marquee flex space-x-12 items-center">
+                            <!-- Headlines -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Programming Languages: Python, C++, Java</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Web Development: HTML, CSS, JavaScript, React, Node.js</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Databases: MySQL, MongoDB</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Version Control: Git, GitHub</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Operating Systems: Windows, Linux (basic CLI)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Tools & IDEs: VS Code, IntelliJ, Postman, Docker (basic)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">APIs: RESTful APIs (consume and create)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Testing & Debugging: Unit testing (e.g., JUnit, PyTest), browser dev tools</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Cloud (basic): AWS (EC2, S3), Firebase</span>
+
+
+                            <!-- Duplicated Headlines for seamless loop -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Programming Languages: Python, C++, Java</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Web Development: HTML, CSS, JavaScript, React, Node.js</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Databases: MySQL, MongoDB</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Version Control: Git, GitHub</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Operating Systems: Windows, Linux (basic CLI)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Tools & IDEs: VS Code, IntelliJ, Postman, Docker (basic)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">APIs: RESTful APIs (consume and create)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Testing & Debugging: Unit testing (e.g., JUnit, PyTest), browser dev tools</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Cloud (basic): AWS (EC2, S3), Firebase</span>
+
                         </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-java skills__icon' ></i>
-                                <span class="skills__name">Java</span>
-                            </div>
-                            <div class="skills__bar skills__java"></div>
-                            <div>
-                                <span class="skills__percentage">75%</span>
-                            </div>
+                    </div>
+
+                     <!-- Skills Headlines Marquee 2 -->
+                    <div class="skills-headline-marquee-container w-full overflow-hidden relative mb-2 border-y border-white/10 py-2">
+                        <div class="skills-headline-marquee flex space-x-12 items-center">
+                            <!-- Headlines -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Data Structures & Algorithms: Arrays, Linked Lists, Trees, Graphs, Sorting, Searching</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Object-Oriented Programming (OOP): Inheritance, Encapsulation, Abstraction, Polymorphism</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Operating Systems Concepts: Process management, memory allocation, file systems</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Computer Networks: TCP/IP, DNS, HTTP/HTTPS, OSI Model</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Database Concepts: Normalization, SQL Queries, Joins, Indexing</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Software Engineering Principles: SDLC, Agile Methodology, MVC Architecture</span>
+
+                            <!-- Duplicated Headlines for seamless loop -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Data Structures & Algorithms: Arrays, Linked Lists, Trees, Graphs, Sorting, Searching</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Object-Oriented Programming (OOP): Inheritance, Encapsulation, Abstraction, Polymorphism</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Operating Systems Concepts: Process management, memory allocation, file systems</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Computer Networks: TCP/IP, DNS, HTTP/HTTPS, OSI Model</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Database Concepts: Normalization, SQL Queries, Joins, Indexing</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Software Engineering Principles: SDLC, Agile Methodology, MVC Architecture</span>
                         </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">HTML5</span>
-                            </div>
-                            <div class="skills__bar skills__html"></div>
-                            <div>
-                                <span class="skills__percentage">93%</span>
-                            </div>
+                    </div>
+
+                     <!-- Skills Headlines Marquee 3 -->
+                    <div class="skills-headline-marquee-container w-full overflow-hidden relative mb-8 border-y border-white/10 py-2">
+                        <div class="skills-headline-marquee flex space-x-12 items-center">
+                            <!-- Headlines -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Problem Solving & Logical Thinking</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Teamwork & Collaboration</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Time Management</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Communication (verbal & written)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Adaptability & Quick Learning</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Attention to Detail</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Project Planning & Documentation</span>
+
+
+                            <!-- Duplicated Headlines for seamless loop -->
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Problem Solving & Logical Thinking</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Teamwork & Collaboration</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Time Management</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Communication (verbal & written)</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Adaptability & Quick Learning</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Attention to Detail</span>
+                            <span class="skills-headline-item text-2xl font-bold text-gradient flex-shrink-0">Project Planning & Documentation</span>
                         </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">CSS3</span>
-                            </div>
-                            <div class="skills__bar skills__css"></div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon'></i>
-                                <span class="skills__name">JavaScript</span>
-                            </div>
-                            <div class="skills__bar skills__js"></div>
-                            <div>
-                                <span class="skills__percentage">75%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">Web Design</span>
-                            </div>
-                            <div class="skills__bar skills__ux"></div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-python skills__icon' ></i>
-                                <span class="skills__name">Python</span>
-                            </div>
-                            <div class="skills__bar skills__python"></div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-mysql skills__icon' ></i>
-                                <span class="skills__name">MySQL</span>
-                            </div>
-                            <div class="skills__bar skills__mysql"></div>
-                            <div>
-                                <span class="skills__percentage">82%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-php skills__icon' ></i>
-                                <span class="skills__name">PHP</span>
-                            </div>
-                            <div class="skills__bar skills__php"></div>
-                            <div>
-                                <span class="skills__percentage">68%</span>
-                            </div>
-                        </div>
+                    </div>
+
+                    <!-- Original skill categories and items removed -->
+                    
+                    <!-- Pause Button (controls the headline marquee) -->
+                    <div class="text-center mt-4">
+                        <button id="pause-skills-button" class="bg-white/20 text-white w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:bg-white/30 hover:shadow-lg">
+                            <i class='bx bx-pause text-xl'></i>
+                        </button>
+                    </div>
                 </div>
             </section>
 
             <style>
-         /* ===== SKILLS ===== */
-                .skills__container {
-                    row-gap: 2rem;
-                    text-align: center;
-                    display: grid;
-                    gap: 2rem;
-                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                }
-
-                .skills__subtitle {
-                    margin-bottom: var(--mb-2);
-                }
-
-                .skills__text {
-                    margin-bottom: var(--mb-4);
-                }
-
-                .skills__data {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    position: relative;
-                    font-weight: var(--font-semi);
-                    padding: 0.5rem 1rem;
-                    margin-bottom: var(--mb-4);
-                    border-radius: 0.5rem;
-                    box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
-                }
-
-                .skills__icon {
-                    font-size: 2rem;
-                    margin-right: var(--mb-2);
-                }
-
-                .skills__names {
-                    display: flex;
-                    align-items: center;
-                    width: 150px;
-                }
-
-                /* Updated skills bar base styling */
-                .skills__bar {
-                    height: 10px;
-                    background: #ddd;
-                    border-radius: 5px;
-                    flex: 1;
-                    margin: 0 1rem;
-                    position: relative;
+                /* Existing marquee styles - will adapt or replace as needed for headlines */
+                .skills-marquee-container {
+                    /* This container is now used for headlines */
+                    width: 100%;
                     overflow: hidden;
+                    position: relative;
+                    margin: 2rem auto;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
                 }
 
-                /* Change to use a custom property for dynamic percentages */
-                .skills__bar::before {
-                    content: '';
-                    position: absolute;
-                    height: 100%;
-                    left: 0;
-                    top: 0;
-                    border-radius: 5px;
-                    transition: width 0.5s ease;
+                .skills-marquee {
+                     /* This class is now on the headlines container */
+                    display: flex;
+                    white-space: nowrap;
+                     animation: marquee 35s linear infinite;
+                     /* width will be set by JS */
                 }
 
-                /* Individual skill colors and percentages */
-                .skills__html::before {
-                    width: var(--percent, 93%);
-                    background: #e34c26;
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(var(--marquee-width));
+                    }
                 }
 
-                .skills__css::before {
-                    width: var(--percent, 85%);
-                    background: #264de4;
+                /* New styles for headline marquee */
+                .skills-headline-marquee-container {
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    margin: 0 auto 1.5rem auto; /* Increased margin for more gap between lines */
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    padding: 0.5rem 0; /* Vertical padding */
                 }
 
-                .skills__js::before {
-                    width: var(--percent, 75%);
-                    background: #f0db4f;
-                }
+                .skills-headline-marquee {
+                     display: flex;
+                     white-space: nowrap;
+                     animation: headline-marquee var(--headline-marquee-duration) linear infinite;
+                     animation-delay: var(--headline-marquee-delay, 0s);
+                 }
 
-                .skills__ux::before {
-                    width: var(--percent, 85%);
-                    background: #ff6347;
-                }
+                 .skills-headline-item {
+                     flex-shrink: 0; /* Prevent shrinking */
+                     margin-right: 3rem; /* Space between headlines */
+                     /* Inherits text-2xl, font-bold, text-gradient from classes */
+                 }
 
-                .skills__cpp::before {
-                    width: var(--percent, 96%);
-                    background: #00599c;
-                }
+                 @keyframes headline-marquee {
+                     0% {
+                         transform: translateX(0);
+                    }
+                    100% {
+                         transform: translateX(var(--headline-marquee-width));
+                     }
+                 }
 
-                .skills__java::before {
-                    width: var(--percent, 75%);
-                    background: #007396;
-                }
-
-                .skills__php::before {
-                    width: var(--percent, 68%);
-                    background: #4f5b93;
-                }
-
-                .skills__mysql::before {
-                    width: var(--percent, 82%);
-                    background: #00758f;
-                }
-
-                .skills__python::before {
-                    width: var(--percent, 100%);
-                    background: #306998;
-                }
-
-                .skills__percentage {
+                .skill-bullet {
+                    /* Kept if needed for other sections, but not for headlines */
+                    color: #00F5FF; /* Neon blue color for bullet */
                     font-weight: bold;
-                    color: #333;
+                    font-size: 1.5rem;
+                    line-height: 1;
                 }
 
-                /* Responsive fixes */
-                @media screen and (max-width: 768px) {
-                    .skills__container {
-                        grid-template-columns: 1fr;
-                    }
+            </style>
 
-                    .skills__data {
-                        padding: 0.25rem 0.5rem;
-                    }
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const headlineMarquees = document.querySelectorAll('.skills-headline-marquee');
+                    const pauseButton = document.getElementById('pause-skills-button');
+                    let isPaused = false;
 
-                    .skills__names {
-                        width: 120px;
-                    }
+                    // Calculate width and set CSS variable for each marquee
+                    headlineMarquees.forEach((marquee, index) => {
+                        let totalWidth = 0;
+                        // Temporarily remove flex-wrap to calculate true width
+                        const originalFlexWrap = marquee.style.flexWrap;
+                        marquee.style.flexWrap = 'nowrap';
 
-                    .skills__bar {
-                        margin: 0 0.5rem;
-                    }
-                }
-
-                /* Fix for the column issue */
-                .skills__column {
-                    display: contents;
-                }
-
-                /* Fix for shadow and spacing */
-                .skills__data {
-                    background: #fff;
-                    margin-bottom: 1rem;
-                }
-
-                /* Ensure proper text alignment */
-                .skills__text, .skills__subtitle {
-                    text-align: center;
-                    grid-column: 1 / -1;
-                }
-                            </style>
-
-
-
-                <script>
-                    // Add this script at the end of your body tag
-                    document.addEventListener('DOMContentLoaded', function() {
-                        // Get all skill bars
-                        const skillBars = document.querySelectorAll('.skills__bar');
-                        
-                        // For each skill bar, get the corresponding percentage
-                        skillBars.forEach(bar => {
-                            const parentDiv = bar.closest('.skills__data');
-                            const percentageSpan = parentDiv.querySelector('.skills__percentage');
-                            const percentage = percentageSpan.textContent;
-                            
-                            // Set the custom property for the width
-                            bar.style.setProperty('--percent', percentage);
+                        // Calculate width based on headline items
+                        Array.from(marquee.children).forEach(item => {
+                            totalWidth += item.offsetWidth + parseFloat(getComputedStyle(item).marginRight);
                         });
+                        // Revert flex-wrap
+                         marquee.style.flexWrap = originalFlexWrap;
+
+                        // The animation should scroll the width of the original set of headlines (half the total width)
+                        marquee.style.setProperty('--headline-marquee-width', `-${totalWidth / 2}px`);
+                        // Adjust animation duration based on width for consistent speed
+                        const speed = 40; // Speed in pixels per second
+                        const duration = (totalWidth / 2) / speed;
+                         marquee.style.setProperty('--headline-marquee-duration', `${duration}s`);
+
+                        // Set staggered animation delay
+                        marquee.style.setProperty('--headline-marquee-delay', `-${index * (duration / 3)}s`);
                     });
-                </script>
 
-
-
+                    pauseButton.addEventListener('click', function() {
+                        if (isPaused) {
+                            headlineMarquees.forEach(marquee => {
+                                marquee.style.animationPlayState = 'running';
+                            });
+                               pauseButton.innerHTML = '<i class="bx bx-pause text-xl"></i>';
+                          } else {
+                            headlineMarquees.forEach(marquee => {
+                                marquee.style.animationPlayState = 'paused';
+                            });
+                               pauseButton.innerHTML = '<i class="bx bx-play text-xl"></i>';
+                          }
+                         isPaused = !isPaused;
+                     });
+                });
+            </script>
 
             <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Projects</h2>
+            <section class="py-20 relative overflow-hidden section-bg" id="work">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <h2 class="text-4xl font-bold text-center text-gradient mb-12">Projects</h2>
 
-                <div class="work__container bd-grid">
-                    <a href="https://github.com/neyamul-hasan14/Automatic-Garbage-Collector-with-Live-Image-Detection-using-ESP32-and-Laptop-for-webcam" class="work__img">
-                        <img src="assets/img/project1.jpg" alt="">
-                        <div class="work__img-text">Project 1: Automatic Garbage Collector with Live Image Detection
-                            using ESP32 and Laptop for Webcam.</div>
-                    </a>
-                    <a href="https://github.com/neyamul-hasan14/Calendar-Generator-" class="work__img">
-                        <img src="assets/img/project2.jpg" alt="">
-                        <div class="work__img-text">Project 2: simple Calendar Gen (C/Java/C++) This project generates a calendar for any given year. <strong>Note: Implementation varies by language.Can be used as a template for other calendar projects.</strong></div>
-                    </a>
-                    <a href="https://github.com/neyamul-hasan14/DropEx-Logistics" class="work__img">
-                        <img src="assets/img/project3.jpg" alt="">
-                        <div class="work__img-text">Project 3: DropEx is an efficient delivery system designed to streamline package management, tracking, and dispatching. It ensures seamless logistics with real-time updates, optimized routing, and user-friendly interfaces for both customers and service providers. </div>
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/noup.jpeg" alt="">
-                        <div class="work__img-text">Project 4: A social media platform for connecting with friends and family.</div>
-                    </a>
-                    
-                    
-                    <a href="" class="work__img">
-                        <img src="assets/img/noup.jpeg" alt="">
-                        <div class="work__img-text">Project 5: A blog website with a content management system.</div>
-                    </a>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <a href="https://github.com/neyamul-hasan14/Automatic-Garbage-Collector-with-Live-Image-Detection-using-ESP32-and-Laptop-for-webcam" 
+                           class="project-card group">
+                            <div class="relative overflow-hidden rounded-2xl h-[400px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                                <img src="assets/img/project1.jpg" alt="" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80">
+                                    <div class="absolute bottom-0 p-6 w-full">
+                                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyber-neon transition-colors duration-300">Automatic Garbage Collector</h3>
+                                        <p class="text-gray-200 mb-3">Live Image Detection using ESP32 and Laptop for Webcam</p>
+                                        <div class="flex items-center space-x-2 text-sm text-gray-300">
+                                            <i class='bx bx-code-alt'></i>
+                                            <span>ESP32</span>
+                                            <span>•</span>
+                                            <span>Computer Vision</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
 
-                    <!--
-                    <a href="" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                        <div class="work__img-text">Project 6: A portfolio website showcasing various projects and skills.</div>
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work7.jpg" alt="">
-                        <div class="work__img-text">Project 7: A real-time chat application for seamless communication.</div>
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work8.jpg" alt="">
-                        <div class="work__img-text">Project 8: A weather forecasting app with accurate predictions.</div>
-                    </a> 
-                    
-                    -->
+                        <a href="https://github.com/neyamul-hasan14/Calendar-Generator-" 
+                           class="project-card group">
+                            <div class="relative overflow-hidden rounded-2xl h-[400px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                                <img src="assets/img/project2.jpg" alt="" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80">
+                                    <div class="absolute bottom-0 p-6 w-full">
+                                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyber-neon transition-colors duration-300">Calendar Generator</h3>
+                                        <p class="text-gray-200 mb-3">Simple Calendar Generator in C/Java/C++</p>
+                                        <div class="flex items-center space-x-2 text-sm text-gray-300">
+                                            <i class='bx bx-code-alt'></i>
+                                            <span>C++</span>
+                                            <span>•</span>
+                                            <span>Java</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/neyamul-hasan14/DropEx-Logistics" 
+                           class="project-card group">
+                            <div class="relative overflow-hidden rounded-2xl h-[400px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                                <img src="assets/img/project3.jpg" alt="" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80">
+                                    <div class="absolute bottom-0 p-6 w-full">
+                                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyber-neon transition-colors duration-300">DropEx Logistics</h3>
+                                        <p class="text-gray-200 mb-3">Efficient delivery system for package management and tracking</p>
+                                        <div class="flex items-center space-x-2 text-sm text-gray-300">
+                                            <i class='bx bx-code-alt'></i>
+                                            <span>Web Development</span>
+                                            <span>•</span>
+                                            <span>Database</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/neyamul-hasan14/kairos-engine" 
+                           class="project-card group">
+                            <div class="relative overflow-hidden rounded-2xl h-[400px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                                <img src="assets/img/project4.jpg" alt="" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80">
+                                    <div class="absolute bottom-0 p-6 w-full">
+                                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyber-neon transition-colors duration-300">kairos-engine</h3>
+                                        <p class="text-gray-200 mb-3">A social network that connects different times and species. </p>
+                                        <div class="flex items-center space-x-2 text-sm text-gray-300">
+                                            <i class='bx bx-code-alt'></i>
+                                            <span>Web Development</span>
+                                            <span>•</span>
+                                            <span>sci-fi/time travelers</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="" 
+                           class="project-card group">
+                            <div class="relative overflow-hidden rounded-2xl h-[400px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                                <img src="assets/img/noup.jpeg" alt="" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80">
+                                    <div class="absolute bottom-0 p-6 w-full">
+                                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyber-neon transition-colors duration-300">Blog Website</h3>
+                                        <p class="text-gray-200 mb-3">Content management system for blogging</p>
+                                        <div class="flex items-center space-x-2 text-sm text-gray-300">
+                                            <i class='bx bx-code-alt'></i>
+                                            <span>Web Development</span>
+                                            <span>•</span>
+                                            <span>CMS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -552,30 +1206,28 @@
             </style>
 
             <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Anonymous Messages</h2>
+            <section class="py-20 relative overflow-hidden section-bg" id="contact">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="scan-line"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <h2 class="text-4xl font-bold text-center text-gradient mb-12">Anonymous Messages</h2>
 
-                <div class="contact__container bd-grid">
-                    <form action="https://formspree.io/f/mkgggonn" method="POST" class="contact__form" onsubmit="return validateForm()">
-                        <input type="text" name="name" placeholder="Name (optional)" class="contact__input">
-                        <textarea name="message" cols="0" rows="10" class="contact__input" placeholder="Anonymous Messages" id="message"></textarea>
-                        <input type="submit" value="SEND" class="contact__button button">
+                    <div class="max-w-2xl mx-auto">
+                        <form action="https://formspree.io/f/mkgggonn" method="POST" class="space-y-6" onsubmit="return validateForm()">
+                            <div>
+                                <input type="text" name="name" placeholder="Name (optional)" 
+                                       class="contact-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-all duration-300">
+                            </div>
+                            <div>
+                                <textarea name="message" id="message" rows="6" placeholder="Anonymous Messages" 
+                                          class="contact-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-all duration-300"></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300">
+                                Send Message
+                            </button>
                     </form>
-                    <script>
-                        function validateForm() {
-                            const message = document.getElementById('message').value.trim();
-                            if (message === "") {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Message cannot be empty.',
-                                });
-                                return false;
-                            }
-                            return true;
-                        }
-                    </script>
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    </div>
                 </div>
             </section>
 
@@ -616,16 +1268,34 @@
         
 
         <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">CONTACT</p>
-            <div class="footer__social">
-            <a href="https://www.facebook.com/neyamul.hasan.44154" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-            <a href="https://www.instagram.com/neyamulhasan_/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-            <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
-            <a href="mailto:neyamulhasan14@gmail.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
-            <a href="https://wa.me/+8801625762001" class="footer__icon"><i class='bx bxl-whatsapp' ></i></a>
+        <footer class="bg-cyber-darker text-white py-12 relative overflow-hidden">
+            <div class="absolute inset-0 cyber-grid opacity-20"></div>
+            <div class="scan-line"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-8 text-gradient">CONTACT</h3>
+                    <div class="flex justify-center space-x-6 mb-8">
+                        <a href="https://www.facebook.com/neyamul.hasan.44154" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                            <i class='bx bxl-facebook text-3xl'></i>
+                        </a>
+                        <a href="https://www.instagram.com/neyamulhasan_/" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                            <i class='bx bxl-instagram text-3xl'></i>
+                        </a>
+                        <a href="https://www.youtube.com/@iamneyamulhasan" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                            <i class='bx bxl-youtube text-3xl'></i>
+                        </a>
+                        <a href="mailto:neyamulhasan14@gmail.com" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                            <i class='bx bx-envelope text-3xl'></i>
+                        </a>
+                        <a href="https://wa.me/+8801625762001" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300 transform hover:scale-110">
+                            <i class='bx bxl-whatsapp text-3xl'></i>
+                        </a>
             </div>
-            <p class="footer__copy">&#169;<strong>2024</strong> Neyamul Hasan. All rights reserved</p>
+                    <p class="text-gray-400">
+                        © <span class="font-bold">2024</span> Neyamul Hasan. All rights reserved
+                    </p>
+                </div>
+            </div>
         </footer>
 
 
@@ -634,6 +1304,69 @@
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
+
+        <!-- Form Validation Script -->
+        <script>
+            function validateForm() {
+                const message = document.getElementById('message').value.trim();
+                if (message === "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Message cannot be empty.',
+                    });
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Mobile Menu Toggle Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const navToggle = document.getElementById('nav-toggle');
+                const navMenu = document.getElementById('nav-menu');
+                const navLinks = document.querySelectorAll('#nav-menu a');
+
+                // Toggle menu
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('hidden');
+                });
+
+                // Close menu when clicking a link
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.add('hidden');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+                        navMenu.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
+
+        <!-- Handle Home Nav Link Click -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const homeNavLink = document.querySelector('header nav a[href="#home"]');
+
+                if (homeNavLink) {
+                    homeNavLink.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent default anchor link behavior
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth' // Smooth scroll to the top
+                        });
+                    });
+                }
+            });
+        </script>
+
     </body>
 </html>
 
