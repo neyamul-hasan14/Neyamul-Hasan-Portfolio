@@ -68,10 +68,24 @@
                 document.getElementById('loading-screen').style.display = 'flex';
             });
 
-            // Hide loading screen and show content when everything is loaded
+            // Hide loading screen and show content when critical resources are loaded
             window.addEventListener('load', function() {
-                document.getElementById('loading-screen').style.display = 'none';
-                document.documentElement.style.visibility = 'visible';
+                // Hide loading screen after a minimum display time (500ms)
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                    document.documentElement.style.visibility = 'visible';
+                }, 355);
+            });
+
+            // Load non-critical resources in the background
+            window.addEventListener('load', function() {
+                // Load images in the background
+                const images = document.getElementsByTagName('img');
+                for(let img of images) {
+                    if(img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                }
             });
         </script>
 
