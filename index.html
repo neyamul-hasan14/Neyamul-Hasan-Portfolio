@@ -72,7 +72,7 @@
                 color: #fff;
                 background-image: 
                     linear-gradient(rgba(5, 5, 5, 0.98), rgba(5, 5, 5, 0.98)),
-                    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300F5FF' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300F5FF' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
                 line-height: 1.6;
             }
             html {
@@ -593,6 +593,32 @@
                     transform: translateX(-50%) scale(1.4);
                 }
             }
+
+            .shine-btn {
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            .shine-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -75%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(
+                    120deg,
+                    rgba(255,255,255,0) 0%,
+                    rgba(255,255,255,0.4) 50%,
+                    rgba(255,255,255,0) 100%
+                );
+                transition: all 0.5s;
+                z-index: 2;
+            }
+            .shine-btn:hover::before {
+                left: 130%;
+                transition: all 0.5s;
+            }
         </style>
     </head>
     <body class="bg-dark">
@@ -603,7 +629,7 @@
                 <div class="flex items-center justify-between">
                     <a href="#" class="text-2xl font-bold text-gradient hover:text-cyber-neon transition-colors duration-300 flex items-center gap-2">
                         Neyamul Hasan
-                        <span class="text-2xl">🇧🇩</span>
+                        <img src="assets/img/bd-flag.jpg" alt="BD" class="w-7 h-5 object-cover rounded-md">
                     </a>
                     
                     <div class="hidden md:flex space-x-8">
@@ -613,7 +639,7 @@
                         <a href="#skills" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Skills</a>
                         <a href="#work" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Projects</a>
                         <a href="#contact" class="text-gray-300 hover:text-cyber-neon transition-colors duration-300">Contact</a>
-                    </div>
+            </div>
 
                 <button class="md:hidden text-gray-300 hover:text-cyber-neon focus:outline-none" id="nav-toggle">
                     <i class='bx bx-menu text-2xl'></i>
@@ -662,7 +688,7 @@
                         <p class="text-lg md:text-xl text-gray-300 mb-4 md:mb-6">
                             Passionate about coding and technology—let's collaborate to create something amazing together!
                         </p>
-                        <a href="#contact" class="inline-block cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyber-neon/20">
+                        <a href="#contact" class="shine-btn inline-block border border-cyber-neon text-cyber-neon font-semibold py-2 px-6 rounded-full bg-white/5 hover:bg-cyber-neon hover:text-white transition-all duration-300">
                             Get in Touch
                         </a>
                         
@@ -721,10 +747,10 @@
                                 Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering. Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.
                             </p>
                             <div class="flex space-x-4">
-                                <a href="#contact" class="inline-block cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyber-neon/20">
+                                <a href="#contact" class="shine-btn inline-block border border-cyber-neon text-cyber-neon font-semibold py-2 px-6 rounded bg-white/5 hover:bg-cyber-neon hover:text-white transition-all duration-300">
                                     Contact Me
                                 </a>
-                                <a href="assets/My CV/neyamul-hasan-cv.pdf" class="inline-block border-2 border-cyber-neon text-cyber-neon hover:bg-cyber-neon hover:text-white font-bold py-2 px-6 rounded-lg transition-all duration-300" download>
+                                <a href="assets/My CV/neyamul-hasan-cv.pdf" class="shine-btn inline-block border border-cyber-neon text-cyber-neon font-semibold py-2 px-6 rounded bg-white/5 hover:bg-cyber-neon hover:text-white transition-all duration-300" download>
                                     Download CV
                                 </a>
                             </div>
@@ -959,8 +985,8 @@
                     
                     <!-- Pause Button (controls the headline marquee) -->
                     <div class="text-center mt-4">
-                        <button id="pause-skills-button" class="bg-white/20 text-white w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:bg-white/30 hover:shadow-lg">
-                            <i class='bx bx-pause text-xl'></i>
+                        <button id="pause-skills-button" class="bg-white/20 text-white w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 hover:bg-white/30 hover:shadow-lg hover:scale-110">
+                            <i class='bx bx-pause text-2xl'></i>
                         </button>
                     </div>
                 </div>
@@ -1074,12 +1100,12 @@
                             headlineMarquees.forEach(marquee => {
                                 marquee.style.animationPlayState = 'running';
                             });
-                               pauseButton.innerHTML = '<i class="bx bx-pause text-xl"></i>';
+                               pauseButton.innerHTML = '<i class="bx bx-pause text-2xl"></i>';
                           } else {
                             headlineMarquees.forEach(marquee => {
                                 marquee.style.animationPlayState = 'paused';
                             });
-                               pauseButton.innerHTML = '<i class="bx bx-play text-xl"></i>';
+                               pauseButton.innerHTML = '<i class="bx bx-play text-2xl"></i>';
                           }
                          isPaused = !isPaused;
                      });
@@ -1226,7 +1252,7 @@
                                           class="contact-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-all duration-300"></textarea>
                             </div>
                             <button type="submit" 
-                                    class="w-full cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300">
+                                    class="shine-btn w-full cyber-border button-glow bg-gradient-to-r from-cyber-neon to-cyber-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300">
                                 Send Message
                             </button>
                     </form>
