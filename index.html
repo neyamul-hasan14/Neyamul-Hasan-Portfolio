@@ -159,8 +159,8 @@
         }
 
         .profile-pic {
-            width: 175px;
-            height: 175px;
+            width: 165px;
+            height: 165px;
             border-radius: 50%;
             background: #333;
             margin: 0 auto 20px;
@@ -331,16 +331,20 @@
 
         .skill-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 5px;
         }
 
         .skill-item {
             text-align: center;
-            padding: 15px 5px;
+            padding: 10px 5px;
             border: 1px solid #333;
             transition: all 0.2s ease;
             background: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .skill-item:hover {
@@ -348,19 +352,21 @@
         }
 
         .skill-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 32px;
+            height: 30px;
+            color: #fff;
         }
 
         .skill-name {
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #999;
+            line-height: 1.2;
         }
 
         /* Projects Section */
@@ -762,12 +768,81 @@
         .skill-icon i {
             color: #fff !important;
         }
+
+        /* Responsive adjustments for smaller screens if needed */
+        @media (max-width: 480px) {
+            .skills-categories {
+                gap: 20px;
+            }
+
+            .skill-list {
+                 grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                 gap: 5px;
+            }
+
+            .skill-item {
+                padding: 8px 3px;
+            }
+
+            .skill-icon {
+                font-size: 1.5rem;
+                height: 24px;
+            }
+
+            .skill-name {
+                font-size: 8px;
+            }
+        }
+
+        /* Desktop view on mobile browser - adjusting skills specifically */
+        @media screen and (max-width: 900px) and (min-resolution: 2dppx) {
+             .skills-categories {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 30px;
+            }
+
+            .skill-list {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                gap: 8px;
+            }
+
+            .skill-item {
+                 padding: 12px 6px;
+            }
+
+            .skill-icon {
+                font-size: 2rem;
+                height: 35px;
+            }
+
+            .skill-name {
+                 font-size: 10px;
+            }
+
+            .skill-category h3 {
+                 font-size: 13px;
+            }
+        }
+
+        .explore-more-btn {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .explore-more-btn .project-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
             <div class="logo">
+                <i class="fa-brands fa-angrycreative"></i>
+                <i class="fa-brands fa-critical-role"></i>
                 Neyamul
                 <img src="assets/img/bd-flag.jpg" alt="BD">
             </div>
@@ -809,8 +884,8 @@
                 Enthusiastic about coding and the tech world :D
             </p>
             <div class="social-links">
-                <a href="https://github.com/neyamulhasan" title="GitHub" target="_blank"><i class="devicon-github-original"></i></a>
-                <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" title="LinkedIn" target="_blank"><i class="devicon-linkedin-plain"></i></a>
+                <a href="https://github.com/neyamulhasan" title="GitHub" target="_blank"><i class="fa-brands fa-square-github"></i></a>
+                <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://www.hackerrank.com/profile/neyamulhasan14" title="HackerRank" target="_blank"><i class="fa-brands fa-hackerrank"></i></a>
                 <a href="https://codeforces.com/profile/Neyamul_Hasan" title="Codeforces" target="_blank"><i class="fa-solid fa-chart-simple fa-flip-horizontal"></i></a>
             </div>
@@ -887,7 +962,7 @@
 
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">TECH & STACK</h2>
+            <h2 class="section-title">TECH & STACK (SKILLS PERIODIC TABLE)</h2>
             <div class="skills-categories">
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
@@ -1102,7 +1177,7 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-icon"><i class="devicon-embeddedc-plain"></i></div>
-                            <div class="skill-name">Computer Arch.</div>
+                            <div class="skill-name">Computer Architecture</div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-icon"><i class="devicon-sqldeveloper-plain"></i></div>
@@ -1120,15 +1195,16 @@
 
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">PROJECTS</h2>
+            <h2 class="section-title">FEATURED PROJECTS</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/img/project1.jpg" alt="project1" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="assets/img/project1.jpg" alt="Automatic Garbage Collector Project" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <h3 class="project-title">Automatic Garbage Collector -ESP32</h3>
                     <p class="project-description">The Automatic Garbage Collector is a robotic system using an ESP32 microcontroller for trash detection and collection. It features AI-based object detection, a robotic arm, environmental sensors, and remote control via the Blynk app.</p>
                     <div class="project-tech">
+                        <span class="tech-tag">AI Model Training</span>
                         <span class="tech-tag">ESP32</span>
                         <span class="tech-tag">Blynk</span>
                         <span class="tech-tag">Computer Vision</span>
@@ -1140,7 +1216,7 @@
 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/img/project2.jpg" alt="project2" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="assets/img/project2.jpg" alt="DropEx Logistics Project" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <h3 class="project-title">DropEx Logistics</h3>
                     <p class="project-description">DropEx is an efficient delivery system designed to streamline package management, tracking, and dispatching. It ensures seamless logistics with real-time updates, optimized routing, and user-friendly interfaces for both customers and service providers.</p>
@@ -1157,7 +1233,7 @@
 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/img/project3.jpg" alt="project3" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="assets/img/project3.jpg" alt="Kairos Engine Project" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <h3 class="project-title">kairos-engine</h3>
                     <p class="project-description">Kairos is a fantasy and sci-fi social network for time travelers -humans and aliens.In a future where time travel is real, Kairos lets users connect across different times, worlds, and galaxies.Travelers can post updates, share discoveries, and chat across past, present and future creating a social network that connects different times and species.</p>
@@ -1172,6 +1248,9 @@
                     </div>
                 </div>
             </div>
+            <div class="explore-more-btn">
+                <a href="https://github.com/neyamulhasan?tab=repositories" class="project-link" target="_blank">Browse More Code</a>
+            </div>
         </div>
     </section>
 
@@ -1179,7 +1258,7 @@
         <div class="container">
             <h2 class="section-title">CONTACT</h2>
             <div class="contact-info">
-                <p>I'm always interested in collaboration—feel free to reach out anytime. Thank you, everyone!<br>— Neyamul Hasan :)</p>
+                <p>I'm always interested in collaboration—feel free to reach out anytime. Thank you!<br>— Neyamul Hasan :)</p>
             </div>
             
             <form class="contact-form" action="https://formspree.io/f/mkgggonn" method="POST">
@@ -1196,16 +1275,17 @@
             </form>
 
             <div class="contact-links">
-                <a href="mailto:your.email@example.com" class="contact-link">Send Email</a>
-                <a href="#" class="contact-link">LinkedIn</a>
-                <a href="#" class="contact-link">GitHub</a>
+                <a href="mailto:neyamulhasan14@gmail.com" class="contact-link">Send Email</a>
+                <a href="https://youtube.com/@iamneyamulhasan" class="contact-link">YouTube</a>
+                <a href="https://www.instagram.com/neyamulhasan_" class="contact-link">Instagram</a>
+                <a href="https://www.facebook.com/neyamul.hasan.44154" class="contact-link">Facebook</a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Kazi Neyamul Hasan. Built with passion and code. v3</p>
+            <p>&copy; 2024 Kazi Neyamul Hasan. Built with passion and code. v3 </p>
         </div>
     </footer>
 
