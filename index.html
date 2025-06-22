@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝓃𝑒𝓎𝒶𝓂𝓊𝓁 Σ</title>
+    <title>Neyamul Hasan</title>
     <link rel="icon" type="image/jpg" href="assets/img/nh1.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
@@ -74,10 +74,24 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: opacity 0.2s ease;
+            position: relative;
+            padding-bottom: 5px;
         }
 
         .nav-links a:hover {
             opacity: 0.7;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
         }
 
         /* Mobile Menu */
@@ -110,13 +124,14 @@
 
         .mobile-menu {
             display: none;
-            position: absolute;
-            top: 100%;
+            position: fixed;
+            bottom: 0;
             left: 0;
             width: 100%;
-            background: #000;
+            background: rgba(34, 34, 34, 0.85) !important;
             border-top: 1px solid #333;
             padding: 20px 0;
+            z-index: 2000;
         }
 
         .mobile-menu.active {
@@ -126,101 +141,257 @@
         .mobile-menu ul {
             list-style: none;
             text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: stretch;
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
 
         .mobile-menu li {
-            margin: 15px 0;
+            flex: 1 1 0;
+            margin: 0;
+            height: 100%;
+            display: flex;
         }
 
         .mobile-menu a {
-            color: #ffffff;
+            color: #fff;
             text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: opacity 0.2s ease;
+            font-size: 9px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            text-align: center;
+            transition: background 0.2s, color 0.2s;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
         }
 
         .mobile-menu a:hover {
             opacity: 0.7;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        .mobile-menu a.active, .mobile-menu a:active {
+            background: transparent !important;
+            color: #fff;
         }
 
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .profile-pic {
-            width: 165px;
-            height: 165px;
+        .mobile-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
             border-radius: 50%;
-            background: #333;
-            margin: 0 auto 20px;
-            border: 2px solid #fff;
+        }
+
+        /* Profile Style */
+        .profile-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 100px;
+            padding-bottom: 40px;
+        }
+
+        .profile-wrapper {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .profile-card {
+            background-color: #1a1a1b;
+            width: 100%;
+            border: 1px solid #343536;
+            border-radius: 8px;
             overflow: hidden;
         }
 
-        .profile-pic img {
+        .profile-banner {
+            height: 200px;
+            background: url('assets/img/cover.jpg') center/cover;
+            position: relative;
+        }
+
+        .profile-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .profile-content {
+            padding: 0 20px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid #1a1a1b;
+            margin-top: -40px;
+            background-color: #1a1a1b;
+        }
+
+        .profile-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 5px;
+        .profile-info {
+            margin-left: 20px;
+            padding-bottom: 10px;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .profile-handle {
+            font-size: 0.9rem;
+            color: #818384;
+        }
+
+        .profile-motto {
+            font-style: italic;
+            color: #b0b3b5;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .profile-about-container {
+            margin-top: 40px;
+        }
+
+        .profile-about-headline {
+            text-align: left;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             letter-spacing: 2px;
             font-weight: normal;
         }
 
-        .hero .subtitle {
-            font-size: 14px;
-            color: #ccc;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-        }
-
-        .hero .description {
-            color: #999;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #666;
+        .profile-about-body {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 12px;
-            transition: all 0.2s ease;
+            gap: 20px;
         }
 
-        .social-links a:hover {
-            background: #fff;
+        .profile-bio {
+            color: #d7dadc;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .profile-gif-container {
+            flex-shrink: 0;
+        }
+
+        .profile-gif-container img {
+            width: 120px;
+            border-radius: 8px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+
+        .profile-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 2px solid #fff;
+            color: #fff;
+            background: transparent;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: background-color 0.2s, color 0.2s;
+            border-radius: 0;
+            font-weight: normal;
+        }
+
+        .profile-btn:hover {
+            background-color: #fff;
             color: #000;
         }
+        
+        .profile-socials.outside {
+            margin-top: 25px;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
 
-        .social-links a i {
-            font-size: 20px;
+        .profile-socials.outside a {
+            color: #818384;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .profile-socials.outside a:hover {
+            color: #d7dadc;
+        }
+
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .profile-avatar {
+                width: 140px;
+                height: 140px;
+                margin-top: -70px;
+            }
+            .profile-info {
+                margin-left: 15px;
+                margin-top: 0;
+            }
+            .profile-name {
+                font-size: 1.4rem;
+            }
+            .profile-about-body {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-wrapper {
+                padding: 0 10px;
+            }
         }
 
         /* About Section */
@@ -460,9 +631,36 @@
 
         /* Contact Section */
         .contact {
-            padding: 80px 0;
-            border-top: 1px solid #333;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .contact-form {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            text-align: left;
+            margin-bottom: 0;
+        }
+        .contact-form:hover {
+            border-color: #444;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: relative;
+            top: 20px;
         }
 
         .contact-info {
@@ -471,21 +669,6 @@
             font-size: 12px;
             color: #999;
             line-height: 1.6;
-        }
-
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: left;
-            background: #111;
-            padding: 30px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-        }
-
-        .contact-form:hover {
-            border-color: #444;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
         .form-group {
@@ -564,13 +747,6 @@
             font-style: italic;
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
         .contact-link {
             color: #fff;
             text-decoration: none;
@@ -598,12 +774,59 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
+            .nav-links,
             .mobile-menu-btn {
+                display: none !important;
+            }
+            .mobile-menu {
+                display: block !important;
+                position: fixed;
+                bottom: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100vw - 24px);
+                max-width: 500px;
+                background: rgba(34, 34, 34, 0.85);
+                border-radius: 16px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+                z-index: 2000;
+                padding: 0;
+                border: none;
+                height: 48px;
+            }
+            .mobile-menu ul {
                 display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: stretch;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            .mobile-menu li {
+                flex: 1 1 0;
+                margin: 0;
+                height: 100%;
+                display: flex;
+            }
+            .mobile-menu a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 10px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                text-align: center;
+                transition: background 0.2s, color 0.2s;
+                height: 100%;
+                width: 100%;
+                padding: 0;
+            }
+            .mobile-menu a.active, .mobile-menu a:active {
+                background: transparent !important;
+                color: #fff;
             }
 
             .hero h1 {
@@ -625,6 +848,10 @@
 
             .skill-list {
                 grid-template-columns: repeat(4, 1fr);
+            }
+
+            body {
+                padding-bottom: 64px;
             }
         }
 
@@ -835,6 +1062,36 @@
             font-size: 12px;
             letter-spacing: 1px;
         }
+
+        /* Add this to CSS for hidden sections */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Fit About, Contact to viewport and center content */
+        .about, .contact {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .about .container, .contact .container {
+            width: 100%;
+            max-width: 900px;
+        }
+        .about-content, .contact-info, .contact-form, .contact-links {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        .about {
+            padding: 0 !important;
+        }
+        .contact {
+            padding: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -847,12 +1104,12 @@
                 <img src="assets/img/bd-flag.jpg" alt="BD">
             </div>
             <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#education">EDUCATION</a></li>
-                <li><a href="#skills">SKILLS</a></li>
-                <li><a href="#projects">PROJECTS</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#home" data-section="home">HOME</a></li>
+                <li><a href="#education" data-section="education">EDUCATION</a></li>
+                <li><a href="#skills" data-section="skills">SKILLS</a></li>
+                <li><a href="#projects" data-section="projects">PROJECTS</a></li>
+                <li><a href="#blog" data-section="blog">BLOG</a></li>
+                <li><a href="#contact" data-section="contact">CONTACT</a></li>
             </ul>
             <div class="mobile-menu-btn">
                 <span></span>
@@ -861,29 +1118,53 @@
             </div>
             <div class="mobile-menu">
                 <ul>
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#education">EDUCATION</a></li>
-                    <li><a href="#skills">SKILLS</a></li>
-                    <li><a href="#projects">PROJECTS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="#home" data-section="home">HOME</a></li>
+                    <li><a href="#education" data-section="education">EDUCATION</a></li>
+                    <li><a href="#skills" data-section="skills">SKILLS</a></li>
+                    <li><a href="#projects" data-section="projects">PROJECTS</a></li>
+                    <li><a href="#blog" data-section="blog">BLOG</a></li>
+                    <li><a href="#contact" data-section="contact">CONTACT</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-pic">
-                <img src="assets/img/neyamulhome.jpg" alt="Neyamul Hasan">
+    <section id="home" class="profile-section">
+        <div class="profile-wrapper">
+            <div class="profile-card">
+                <div class="profile-banner"></div>
+                <div class="profile-content">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="assets/img/neyamulhome.jpg" alt="Neyamul Hasan Avatar">
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">Kazi Neyamul Hasan</h1>
+                            <p class="profile-handle">u/neyamulhasan</p>
+                            <p class="profile-motto">Build things that matter in the digital world :)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1>Kazi Neyamul Hasan</h1>
-            <p class="subtitle">COMPUTER SCIENCE UNDERGRAD</p>
-            <p class="description">
-                Build things that matter in the digital world :)<br>
-                Enthusiastic about coding and the tech world :D
-            </p>
-            <div class="social-links">
+
+            <div class="profile-about-container">
+                <h2 class="profile-about-headline">About</h2>
+                <div class="profile-about-body">
+                    <div class="profile-bio">
+                        <p>Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering.</p>
+                        <p>Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.</p>
+                    </div>
+                    <div class="profile-gif-container">
+                        <img src="assets/img/abgif.gif" alt="Coding GIF">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <a href="assets/My CV/Kazi Neyamul Hasan.pdf" class="profile-btn" download>DOWNLOAD RESUME</a>
+            </div>
+
+            <div class="profile-socials outside">
                 <a href="https://github.com/neyamulhasan" title="GitHub" target="_blank"><i class="fa-brands fa-square-github"></i></a>
                 <a href="https://www.linkedin.com/in/kazi-neyamul-hasan-1376201bb/" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://www.hackerrank.com/profile/neyamulhasan14" title="HackerRank" target="_blank"><i class="fa-brands fa-hackerrank"></i></a>
@@ -892,24 +1173,7 @@
         </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">ABOUT</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p> Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering.</p>
-                    <p>Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.</p>
-                    <a href="assets/My CV/Kazi Neyamul Hasan.pdf" class="resume-btn" download>DOWNLOAD RESUME</a>
-                </div>
-                <!-- <div class="pixel-art"></div> -->
-                <div class="about-image">
-                    <img src="assets/img/abgif.gif" alt="About GIF" style="width:100%;max-width:120px;border-radius:8px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="education" class="education">
+    <section id="education" class="education hidden">
         <div class="container">
             <h2 class="section-title">EDUCATION</h2>
             <div class="education-timeline">
@@ -960,7 +1224,7 @@
         </div>
     </section>
 
-    <section id="skills" class="skills">
+    <section id="skills" class="skills hidden">
         <div class="container">
             <h2 class="section-title">TECH & STACK (SKILLS PERIODIC TABLE)</h2>
             <div class="skills-categories">
@@ -1193,7 +1457,7 @@
         </div>
     </section>
 
-    <section id="projects" class="projects">
+    <section id="projects" class="projects hidden">
         <div class="container">
             <h2 class="section-title">FEATURED PROJECTS</h2>
             <div class="projects-grid">
@@ -1254,11 +1518,20 @@
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="blog" class="contact hidden">
+        <div class="container">
+            <h2 class="section-title">BLOG</h2>
+            <div class="contact-info">
+                <p>Coming soon... Check back later for articles and updates!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact hidden">
         <div class="container">
             <h2 class="section-title">CONTACT</h2>
             <div class="contact-info">
-                <p>I'm always interested in collaboration—feel free to reach out anytime. Thank you!<br>— Neyamul Hasan :)</p>
+                <p>I'm always interested in collaboration—feel free to reach out anytime. Thank you!<><br>— 2024 Neyamul Hasan :)</p>
             </div>
             
             <form class="contact-form" action="https://formspree.io/f/mkgggonn" method="POST">
@@ -1273,6 +1546,7 @@
                 <button type="submit" class="form-submit">Send Message</button>
                 <p class="form-note">You can send anonymous messages by leaving the name field empty.</p>
             </form>
+            
 
             <div class="contact-links">
                 <a href="mailto:neyamulhasan14@gmail.com" class="contact-link">Send Email</a>
@@ -1282,12 +1556,6 @@
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Kazi Neyamul Hasan. Built with passion and code. v3 </p>
-        </div>
-    </footer>
 
     <script>
         // Mobile menu toggle
@@ -1299,27 +1567,41 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', function() {
+        // SPA navigation logic (no breadcrumb)
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(sec => {
+                if (sec.id === sectionId) {
+                    sec.classList.remove('hidden');
+                } else {
+                    sec.classList.add('hidden');
+                }
+            });
+
+            // Update active state in both navbars to show the dot
+            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Remember last section
+            localStorage.setItem('lastSection', sectionId);
+        }
+        // Navbar and mobile menu links
+        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.getAttribute('data-section');
+                showSection(section);
+                // Close mobile menu if open
                 mobileMenuBtn.classList.remove('active');
                 mobileMenu.classList.remove('active');
             });
         });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // On page load, show last visited section or home
+        const lastSection = localStorage.getItem('lastSection') || 'home';
+        showSection(lastSection);
     </script>
 </body>
 </html>
