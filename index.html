@@ -1636,9 +1636,60 @@
         const GITHUB_USERNAME = 'neyamulhasan';
         const GITHUB_BLOG_REPO = 'blog'; // The name of your blog repository
 
-        function showBlogGrid() {
-            document.getElementById('blog-posts-container').style.display = 'grid';
-            document.getElementById('blog-post-view').style.display = 'none';
+        async function loadBlogPosts() {
+            if (blogLoaded) return;
+            const postsContainer = document.getElementById('blog-posts-container');
+            postsContainer.innerHTML = '<p>Loading posts from GitHub...</p>';
+
+            try {
+                // 1. Fetch the list of items (folders) in the repo
+                const repoUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_BLOG_REPO}/contents/`;
+                const response = await fetch(repoUrl);
+                if (!response.ok) throw new Error(`Could not fetch repo contents. Make sure the '${GITHUB_BLOG_REPO}' repository exists and is public.`);
+                const items = await response.json();
+                
+                const postFolders = items.filter(item => item.type === 'dir').sort((a,b) => b.name.localeCompare(a.name));
+
+                if (postFolders.length === 0) {
+                    postsContainer.innerHTML = "<p>No blog posts found. Add folders to your blog repository.</p>";
+                    return;
+                }
+
+                postsContainer.innerHTML = ''; 
+                
+                // 2. For each folder, get its contents to find the cover image
+                for (const folder of postFolders) {
+                    const folderContentsUrl = folder.url;
+                    const contentsResponse = await fetch(folderContentsUrl);
+                    const contents = await contentsResponse.json();
+
+                    const coverImage = contents.find(file => file.name.match(/\.(jpg|jpeg|png|gif)$/i));
+                    const coverImageUrl = coverImage ? coverImage.download_url : 'https://source.unsplash.com/random/400x300?abstract';
+                    
+                    const postHtmlFile = contents.find(file => file.name === 'index.html');
+                    if (!postHtmlFile) continue; // Skip folder if no index.html
+
+                    const postHtmlUrl = postHtmlFile.download_url;
+                    
+                    const card = document.createElement('div');
+                    card.style.cursor = 'pointer';
+                    card.className = 'blog-card';
+                    card.innerHTML = `
+                        <div class="blog-card-image" style="background-image: url('${coverImageUrl}')"></div>
+                        <div class="blog-card-content">
+                            <h3>${folder.name.replace(/[-_]/g, ' ')}</h3>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => showBlogPost(postHtmlUrl, folder.name));
+                    postsContainer.appendChild(card);
+                }
+                
+                blogLoaded = true;
+
+            } catch (error) {
+                console.error("Failed to load blog posts:", error);
+                postsContainer.innerHTML = `<p>Error loading blog posts. See console for details. <br> ${error.message}</p>`;
+            }
         }
 
         function showBlogPost(postHtmlUrl, postTitle) {
@@ -1689,60 +1740,9 @@
                 });
         }
 
-        async function loadBlogPosts() {
-            if (blogLoaded) return;
-            const postsContainer = document.getElementById('blog-posts-container');
-            postsContainer.innerHTML = '<p>Loading posts from GitHub...</p>';
-
-            try {
-                // 1. Fetch the list of items (folders) in the repo
-                const repoUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_BLOG_REPO}/contents/`;
-                const response = await fetch(repoUrl);
-                if (!response.ok) throw new Error(`Could not fetch repo contents. Make sure the '${GITHUB_BLOG_REPO}' repository exists and is public.`);
-                const items = await response.json();
-                
-                const postFolders = items.filter(item => item.type === 'dir').sort((a,b) => b.name.localeCompare(a.name));
-
-                if (postFolders.length === 0) {
-                    postsContainer.innerHTML = "<p>No blog posts found. Add folders to your blog repository.</p>";
-                    return;
-                }
-
-                postsContainer.innerHTML = ''; 
-                
-                // 2. For each folder, get its contents to find the cover image
-                for (const folder of postFolders) {
-                    const folderContentsUrl = folder.url;
-                    const contentsResponse = await fetch(folderContentsUrl);
-                    const contents = await contentsResponse.json();
-
-                    const coverImage = contents.find(file => file.name.match(/\.(jpg|jpeg|png|gif)$/i));
-                    const coverImageUrl = coverImage ? coverImage.download_url : 'https://source.unsplash.com/random/400x300?abstract';
-                    
-                    const postHtmlFile = contents.find(file => file.name === 'index.html');
-                    if (!postHtmlFile) return; // Skip folder if no index.html
-
-                    const postHtmlUrl = postHtmlFile.download_url;
-                    
-                    const card = document.createElement('div');
-                    card.style.cursor = 'pointer';
-                    card.className = 'blog-card';
-                    card.innerHTML = `
-                        <div class="blog-card-image" style="background-image: url('${coverImageUrl}')"></div>
-                        <div class="blog-card-content">
-                            <h3>${folder.name.replace(/[-_]/g, ' ')}</h3>
-                        </div>
-                    `;
-                    card.addEventListener('click', () => showBlogPost(postHtmlUrl, folder.name));
-                    postsContainer.appendChild(card);
-                }
-                
-                blogLoaded = true;
-
-            } catch (error) {
-                console.error("Failed to load blog posts:", error);
-                postsContainer.innerHTML = `<p>Error loading blog posts. See console for details. <br> ${error.message}</p>`;
-            }
+        function showBlogGrid() {
+            document.getElementById('blog-posts-container').style.display = 'grid';
+            document.getElementById('blog-post-view').style.display = 'none';
         }
 
         function showSection(sectionId) {
@@ -1754,11 +1754,7 @@
                 }
             });
 
-            if (sectionId === 'blog') {
-                loadBlogPosts();
-            }
-
-            // Update active state in both navbars to show the dot
+            // Update active state in nav
             document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section') === sectionId) {
@@ -1766,21 +1762,26 @@
                 }
             });
 
-            // Remember last section (now using sessionStorage)
-            sessionStorage.setItem('lastSection', sectionId);
+            // Blog logic
+            if (sectionId === 'blog') {
+                document.getElementById('blog-posts-container').style.display = 'grid';
+                document.getElementById('blog-post-view').style.display = 'none';
+                blogLoaded = false;
+                loadBlogPosts();
+            }
         }
-        // Navbar and mobile menu links
-        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = this.getAttribute('data-section');
-                showSection(section);
-            });
-        });
 
-        // On page load, show last visited section or home (now using sessionStorage)
-        const lastSection = sessionStorage.getItem('lastSection') || 'home';
-        showSection(lastSection);
+        // On page load or hash change, show the correct section
+        function handleHashChange() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else {
+                showSection('home');
+            }
+        }
+        window.addEventListener('hashchange', handleHashChange);
+        handleHashChange();
     </script>
 </body>
 </html>
