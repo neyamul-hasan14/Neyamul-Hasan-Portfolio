@@ -312,15 +312,6 @@
             flex-grow: 1;
         }
 
-        .profile-gif-container {
-            flex-shrink: 0;
-        }
-
-        .profile-gif-container img {
-            width: 120px;
-            border-radius: 8px;
-        }
-
         .profile-actions {
             display: flex;
             gap: 10px;
@@ -443,28 +434,6 @@
             color: #000;
         }
         
-        .pixel-art {
-            width: 120px;
-            height: 120px;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    #333 0px,
-                    #333 8px,
-                    #666 8px,
-                    #666 16px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    #444 0px,
-                    #444 8px,
-                    #777 8px,
-                    #777 16px
-                );
-            border: 1px solid #666;
-            margin: 0 auto;
-        }
-
         .about-image {
             display: flex;
             justify-content: center;
@@ -629,154 +598,123 @@
             color: #000;
         }
 
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
+        /* Contact Section - unified style */
+        #contact {
+            padding-top: 80px;
+            padding-bottom: 60px;
             border-top: 1px solid #333;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-
-        .contact .container {
-            width: 100%;
-            max-width: 900px;
+        #contact .container {
+            max-width: 420px;
             margin: 0 auto;
+            padding: 0 16px;
         }
-
-        .contact .section-title {
+        #contact .section-title {
+            margin-top: 0;
+            margin-bottom: 32px;
             text-align: center;
             font-size: 1.5rem;
-            margin-bottom: 40px;
             letter-spacing: 2px;
             font-weight: normal;
         }
-
-        .contact-info {
-            max-width: 400px;
-            margin: 0 auto 40px;
-            font-size: 12px;
-            color: #999;
-            line-height: 1.6;
+        #contact .contact-info {
             text-align: center;
-        }
-
-        .contact-form {
-            max-width: 500px;
-            width: 100%;
-            margin: 0 auto;
-            background: #111;
-            padding: 30px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .contact-form:hover {
-            border-color: #444;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            position: relative;
-            top: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 11px;
             color: #999;
-            margin-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        #contact .contact-form {
+            background: #111;
+            border: 1px solid #333;
+            padding: 18px 14px 14px 14px;
+            margin-bottom: 0;
+            border-radius: 6px;
+        }
+        #contact .form-group {
+            margin-bottom: 14px;
+        }
+        #contact .form-group label {
+            display: block;
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: color 0.3s ease;
         }
-
-        .form-group input,
-        .form-group textarea {
+        #contact .form-group input,
+        #contact .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 8px;
             background: #000;
             border: 1px solid #222;
             color: #fff;
             font-family: 'Courier New', monospace;
             font-size: 12px;
-            resize: vertical;
-            transition: all 0.3s ease;
+            border-radius: 3px;
         }
-
-        .form-group textarea {
-            min-height: 120px;
+        #contact .form-group textarea {
+            min-height: 80px;
         }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #444;
-            background: #0a0a0a;
-        }
-
-        .form-group input:hover,
-        .form-group textarea:hover {
-            border-color: #333;
-        }
-
-        .form-submit {
+        #contact .form-submit {
             background: #000;
             color: #fff;
             border: 1px solid #333;
-            padding: 12px 25px;
-            font-size: 11px;
+            padding: 10px 0;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-family: 'Courier New', monospace;
-            position: relative;
-            overflow: hidden;
+            width: 100%;
+            border-radius: 3px;
+            margin-top: 6px;
+            transition: background 0.2s, color 0.2s;
         }
-
-        .form-submit:hover {
+        #contact .form-submit:hover {
             background: #fff;
             color: #000;
             border-color: #fff;
         }
-
-        .form-submit:active {
-            transform: translateY(1px);
+        #contact .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 32px;
         }
-
-        .form-note {
-            font-size: 10px;
-            color: #666;
-            margin-top: 8px;
-            font-style: italic;
-        }
-
-        .contact-link {
+        #contact .contact-link {
+            background: #111;
             color: #fff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #555;
-            font-size: 10px;
+            border: 1px solid #444;
+            padding: 6px 18px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            border-radius: 6px;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+            text-align: center;
+            display: inline-block;
+            min-width: 90px;
+            box-sizing: border-box;
+            font-weight: 500;
         }
-
-        .contact-link:hover {
+        #contact .contact-link:hover {
             background: #fff;
-            color: #000;
+            color: #111;
+            border-color: #ffd700;
+        }
+        @media (max-width: 600px) {
+            #contact .contact-links {
+                gap: 8px;
+                margin-top: 24px;
+            }
+            #contact .contact-link {
+                font-size: 12px;
+                padding: 6px 12px;
+                min-width: 70px;
+            }
         }
 
         /* Footer */
@@ -1273,7 +1211,9 @@
 
         /* Add top padding to all sections for desktop to avoid navbar overlap */
         section {
-            padding-top: 100px;
+            padding-top: 80px;
+            padding-bottom: 60px;
+            border-top: 1px solid #333;
         }
 
         /* Remove padding-top from .section-title on desktop */
@@ -1283,11 +1223,88 @@
 
         @media (max-width: 768px) {
             section {
-                padding-top: 80px !important;
+                padding-top: 60px !important;
+                padding-bottom: 40px !important;
             }
             section .section-title {
                 padding-top: 40px !important;
             }
+        }
+
+        /* Unify all section headline positions */
+        section {
+            padding-top: 80px;
+            padding-bottom: 60px;
+            border-top: 1px solid #333;
+        }
+        #home {
+            padding-top: 0;
+            border-top: none;
+        }
+        .section-title {
+            margin-top: 0;
+            margin-bottom: 40px;
+            padding-top: 0 !important;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        /* Remove extra flex/justify from contact */
+        .contact {
+            display: block;
+            min-height: 100vh;
+            align-items: initial;
+            flex-direction: initial;
+            justify-content: initial;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding-top: 60px !important;
+                padding-bottom: 40px !important;
+            }
+            .section-title {
+                margin-bottom: 30px;
+                font-size: 1.2rem;
+            }
+        }
+
+        #contact .contact-form,
+        #contact .contact-link {
+            border-radius: 0 !important;
+        }
+
+        #contact .contact-links {
+            margin-top: 18px;
+        }
+
+        #contact .form-note {
+            margin-bottom: 18px;
+        }
+
+        #contact .contact-link i {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus {
+            outline: none;
+            border-color: #969696;
+            background: #000;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        #contact .form-note {
+            font-size: 10px !important;
+        }
+
+        #contact .form-group input::placeholder,
+        #contact .form-group textarea::placeholder {
+            font-size: 10px;
         }
     </style>
 </head>
@@ -1350,9 +1367,6 @@
                     <div class="profile-bio">
                         <p>Enthusiast about science, new technology, programming, and online gaming. Always willing to share my knowledge and innovative ideas with others. Committed to making a positive impact in the world through software development, problem-solving, and volunteering.</p>
                         <p>Ready to contribute to any team or project. I am confident that I can make a meaningful contribution to any team or project.</p>
-                    </div>
-                    <div class="profile-gif-container">
-                        <img src="assets/img/abgif.gif" alt="Coding GIF">
                     </div>
                 </div>
             </div>
@@ -1727,13 +1741,12 @@
         </div>
     </section>
 
-    <section id="contact" class="contact hidden">
+    <section id="contact" class="hidden">
         <div class="container">
             <h2 class="section-title">CONTACT</h2>
             <div class="contact-info">
-                <p>I'm always interested in collaboration—feel free to reach out anytime.<br>— 2024 Neyamul Hasan :)</p>
+                <p>I'm always interested in collaboration—feel free to reach out anytime.-Thank you <br>— 2024 Neyamul Hasan :)</p>
             </div>
-            
             <form class="contact-form" action="https://formspree.io/f/mkgggonn" method="POST">
                 <div class="form-group">
                     <label for="name">Name (Optional)</label>
@@ -1744,16 +1757,16 @@
                     <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
                 <button type="submit" class="form-submit">Send Message</button>
-                <p class="form-note">You can send anonymous messages by leaving the name field empty.</p>
+                <div class="form-note" style="font-size:10px;color:#888;margin-top:10px;font-style:italic;">
+                    You can send anonymous messages by leaving the name field empty.
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:neyamulhasan14@gmail.com" class="contact-link" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://youtube.com/@iamneyamulhasan" class="contact-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/neyamulhasan_" class="contact-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/neyamul.hasan.44154" class="contact-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
             </form>
-            
-
-            <div class="contact-links">
-                <a href="mailto:neyamulhasan14@gmail.com" class="contact-link">Send Email</a>
-                <a href="https://youtube.com/@iamneyamulhasan" class="contact-link">YouTube</a>
-                <a href="https://www.instagram.com/neyamulhasan_" class="contact-link">Instagram</a>
-                <a href="https://www.facebook.com/neyamul.hasan.44154" class="contact-link">Facebook</a>
-            </div>
         </div>
     </section>
 
