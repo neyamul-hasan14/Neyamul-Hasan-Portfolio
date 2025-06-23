@@ -1766,8 +1766,8 @@
                 }
             });
 
-            // Remember last section
-            localStorage.setItem('lastSection', sectionId);
+            // Remember last section (now using sessionStorage)
+            sessionStorage.setItem('lastSection', sectionId);
         }
         // Navbar and mobile menu links
         document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
@@ -1778,8 +1778,8 @@
             });
         });
 
-        // On page load, show last visited section or home
-        const lastSection = localStorage.getItem('lastSection') || 'home';
+        // On page load, show last visited section or home (now using sessionStorage)
+        const lastSection = sessionStorage.getItem('lastSection') || 'home';
         showSection(lastSection);
     </script>
 </body>
