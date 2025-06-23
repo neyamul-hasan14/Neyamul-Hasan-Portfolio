@@ -634,8 +634,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             padding-top: 0;
             padding-bottom: 0;
         }
@@ -1092,6 +1092,77 @@
         .contact {
             padding: 0 !important;
         }
+
+        /* Blog Section Styles */
+        #blog .container {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        #blog-posts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .blog-card {
+            background-color: #1a1a1b;
+            border: 1px solid #343536;
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #d7dadc;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .blog-card-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-content h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* Styles for the embedded blog post view */
+        #blog-post-view {
+            width: 100%;
+        }
+        .back-to-blog-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-to-blog-btn:hover {
+            text-decoration: underline;
+        }
+        #blog-iframe {
+            width: 100%;
+            height: 80vh; /* Adjust height as needed */
+            border: 1px solid #343536;
+            border-radius: 8px;
+            background-color: #1a1a1b; /* Dark background for the frame */
+        }
     </style>
 </head>
 <body>
@@ -1518,11 +1589,14 @@
         </div>
     </section>
 
-    <section id="blog" class="contact hidden">
+    <section id="blog" class="hidden">
         <div class="container">
             <h2 class="section-title">BLOG</h2>
-            <div class="contact-info">
-                <p>Coming soon... Check back later for articles and updates!</p>
+            <div id="blog-posts-container">
+                <p>Loading posts from GitHub...</p>
+            </div>
+            <div id="blog-post-view" style="display: none;">
+                <!-- Single blog post will be loaded here -->
             </div>
         </div>
     </section>
@@ -1558,16 +1632,119 @@
     </section>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        let blogLoaded = false;
+        const GITHUB_USERNAME = 'neyamulhasan';
+        const GITHUB_BLOG_REPO = 'blog'; // The name of your blog repository
 
-        mobileMenuBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
+        function showBlogGrid() {
+            document.getElementById('blog-posts-container').style.display = 'grid';
+            document.getElementById('blog-post-view').style.display = 'none';
+        }
 
-        // SPA navigation logic (no breadcrumb)
+        function showBlogPost(postHtmlUrl, postTitle) {
+            const postsContainer = document.getElementById('blog-posts-container');
+            const postViewContainer = document.getElementById('blog-post-view');
+            
+            postsContainer.style.display = 'none';
+            postViewContainer.style.display = 'block';
+
+            postViewContainer.innerHTML = `
+                <a class="back-to-blog-btn" onclick="showBlogGrid()">← Back to All Posts</a>
+                <iframe id="blog-iframe" srcdoc="" title="${postTitle}"></iframe>
+            `;
+
+            // Fetch, style, and display the raw HTML content
+            fetch(postHtmlUrl)
+                .then(response => response.text())
+                .then(html => {
+                    const iframe = document.getElementById('blog-iframe');
+                    
+                    let modifiedHtml = html.replace(/<a[^>]*>.*?Back to Blog.*?<\/a>/i, '');
+                    
+                    // Inject a dark theme style with a CSS dot pattern
+                    const darkThemeStyle = `
+                        <style>
+                            body { 
+                                color: #d7dadc !important;
+                                background: 
+                                    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                                    #1a1a1b;
+                                background-size: 15px 15px;
+                            }
+                            a { color: #ffd700; }
+                        </style>
+                    `;
+                    
+                    if (modifiedHtml.includes('</head>')) {
+                        modifiedHtml = modifiedHtml.replace('</head>', `${darkThemeStyle}</head>`);
+                    } else {
+                        modifiedHtml = darkThemeStyle + modifiedHtml;
+                    }
+
+                    iframe.srcdoc = modifiedHtml;
+                })
+                .catch(err => {
+                    console.error('Failed to load post content:', err);
+                    postViewContainer.innerHTML = `<p>Error loading content.</p>`;
+                });
+        }
+
+        async function loadBlogPosts() {
+            if (blogLoaded) return;
+            const postsContainer = document.getElementById('blog-posts-container');
+            postsContainer.innerHTML = '<p>Loading posts from GitHub...</p>';
+
+            try {
+                // 1. Fetch the list of items (folders) in the repo
+                const repoUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_BLOG_REPO}/contents/`;
+                const response = await fetch(repoUrl);
+                if (!response.ok) throw new Error(`Could not fetch repo contents. Make sure the '${GITHUB_BLOG_REPO}' repository exists and is public.`);
+                const items = await response.json();
+                
+                const postFolders = items.filter(item => item.type === 'dir').sort((a,b) => b.name.localeCompare(a.name));
+
+                if (postFolders.length === 0) {
+                    postsContainer.innerHTML = "<p>No blog posts found. Add folders to your blog repository.</p>";
+                    return;
+                }
+
+                postsContainer.innerHTML = ''; 
+                
+                // 2. For each folder, get its contents to find the cover image
+                for (const folder of postFolders) {
+                    const folderContentsUrl = folder.url;
+                    const contentsResponse = await fetch(folderContentsUrl);
+                    const contents = await contentsResponse.json();
+
+                    const coverImage = contents.find(file => file.name.match(/\.(jpg|jpeg|png|gif)$/i));
+                    const coverImageUrl = coverImage ? coverImage.download_url : 'https://source.unsplash.com/random/400x300?abstract';
+                    
+                    const postHtmlFile = contents.find(file => file.name === 'index.html');
+                    if (!postHtmlFile) return; // Skip folder if no index.html
+
+                    const postHtmlUrl = postHtmlFile.download_url;
+                    
+                    const card = document.createElement('div');
+                    card.style.cursor = 'pointer';
+                    card.className = 'blog-card';
+                    card.innerHTML = `
+                        <div class="blog-card-image" style="background-image: url('${coverImageUrl}')"></div>
+                        <div class="blog-card-content">
+                            <h3>${folder.name.replace(/[-_]/g, ' ')}</h3>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => showBlogPost(postHtmlUrl, folder.name));
+                    postsContainer.appendChild(card);
+                }
+                
+                blogLoaded = true;
+
+            } catch (error) {
+                console.error("Failed to load blog posts:", error);
+                postsContainer.innerHTML = `<p>Error loading blog posts. See console for details. <br> ${error.message}</p>`;
+            }
+        }
+
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(sec => {
                 if (sec.id === sectionId) {
@@ -1576,6 +1753,10 @@
                     sec.classList.add('hidden');
                 }
             });
+
+            if (sectionId === 'blog') {
+                loadBlogPosts();
+            }
 
             // Update active state in both navbars to show the dot
             document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
@@ -1594,11 +1775,9 @@
                 e.preventDefault();
                 const section = this.getAttribute('data-section');
                 showSection(section);
-                // Close mobile menu if open
-                mobileMenuBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
             });
         });
+
         // On page load, show last visited section or home
         const lastSection = localStorage.getItem('lastSection') || 'home';
         showSection(lastSection);
