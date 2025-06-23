@@ -631,14 +631,37 @@
 
         /* Contact Section */
         .contact {
+            padding: 80px 0;
+            border-top: 1px solid #333;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding-top: 0;
-            padding-bottom: 0;
         }
+
+        .contact .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        .contact-info {
+            max-width: 400px;
+            margin: 0 auto 40px;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.6;
+            text-align: center;
+        }
+
         .contact-form {
             max-width: 500px;
             width: 100%;
@@ -648,12 +671,13 @@
             border: 1px solid #333;
             transition: all 0.3s ease;
             text-align: left;
-            margin-bottom: 0;
         }
+
         .contact-form:hover {
             border-color: #444;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
+
         .contact-links {
             display: flex;
             justify-content: center;
@@ -661,14 +685,6 @@
             gap: 15px;
             position: relative;
             top: 20px;
-        }
-
-        .contact-info {
-            max-width: 400px;
-            margin: 0 auto 40px;
-            font-size: 12px;
-            color: #999;
-            line-height: 1.6;
         }
 
         .form-group {
@@ -772,7 +788,7 @@
             font-size: 11px;
         }
 
-        /* Responsive */
+        /* General Mobile Styles */
         @media (max-width: 768px) {
             .nav-links,
             .mobile-menu-btn {
@@ -829,27 +845,6 @@
                 color: #fff;
             }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-categories {
-                grid-template-columns: 1fr;
-            }
-
-            .skill-list {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
             body {
                 padding-bottom: 80px;
             }
@@ -891,136 +886,52 @@
             }
 
             /* Fix for contact section on mobile */
-            .contact-form {
-                margin: 20px auto;
-                width: 100%;
-                max-width: none;
+            .contact {
+                padding-top: 80px !important;
+                padding-bottom: 100px !important;
+                min-height: calc(100vh - 80px) !important;
+                justify-content: flex-start;
             }
-        }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links,
-            .mobile-menu-btn {
-                display: none !important;
+            .contact .container {
+                padding: 0 20px;
             }
-            .mobile-menu {
-                display: block !important;
-                position: fixed;
-                bottom: 16px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: calc(100vw - 24px);
-                max-width: 500px;
-                background: rgba(34, 34, 34, 0.85);
-                border-radius: 16px;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-                z-index: 2000;
-                padding: 0;
-                border: none;
-                height: 48px;
+
+            .contact .section-title {
+                margin-top: 0;
+                padding-top: 20px;
+                margin-bottom: 30px;
             }
-            .mobile-menu ul {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: stretch;
-                margin: 0;
-                padding: 0;
-                height: 100%;
+
+            .contact-info {
+                margin-bottom: 30px;
+                padding: 0 15px;
             }
-            .mobile-menu li {
-                flex: 1 1 0;
-                margin: 0;
-                height: 100%;
-                display: flex;
+
+            .contact-form {
+                padding: 20px;
+                margin: 0 auto 30px;
             }
-            .mobile-menu a {
-                color: #fff;
-                text-decoration: none;
-                font-size: 10px;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
+
+            .contact-links {
+                flex-wrap: wrap;
                 justify-content: center;
-                border-radius: 10px;
-                text-align: center;
-                transition: background 0.2s, color 0.2s;
-                height: 100%;
+                gap: 10px;
+                padding: 0 15px;
+                margin-top: 30px;
+            }
+
+            .contact-link {
+                font-size: 9px;
+                padding: 6px 12px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-submit {
                 width: 100%;
-                padding: 0;
-            }
-            .mobile-menu a.active, .mobile-menu a:active {
-                background: transparent !important;
-                color: #fff;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-categories {
-                grid-template-columns: 1fr;
-            }
-
-            .skill-list {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            body {
-                padding-bottom: 80px;
-            }
-
-            /* Fix for section padding on mobile */
-            section {
-                padding-top: 80px !important;
-                min-height: calc(100vh - 80px) !important;
-            }
-
-            .section-title {
-                margin-top: 0;
-                padding-top: 20px;
-            }
-
-            /* Ensure content is visible on mobile */
-            .container {
-                padding-left: 20px;
-                padding-right: 20px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            /* Adjust spacing for mobile navigation */
-            nav {
-                padding: 12px 0;
-            }
-
-            /* Fix for education section on mobile */
-            .education-timeline {
-                margin-top: 20px;
-                padding-bottom: 60px;
-            }
-
-            /* Fix for projects section on mobile */
-            .projects-grid {
-                margin-top: 20px;
-                padding-bottom: 60px;
-            }
-
-            /* Fix for contact section on mobile */
-            .contact-form {
-                margin: 20px auto;
-                width: 100%;
-                max-width: none;
             }
         }
 
@@ -1331,6 +1242,52 @@
             border: 1px solid #343536;
             border-radius: 8px;
             background-color: #1a1a1b; /* Dark background for the frame */
+        }
+
+        /* Force all section headlines to align */
+        section .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 0 !important;
+            margin-bottom: 40px !important;
+            padding-top: 40px !important;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        @media (max-width: 768px) {
+            section .section-title {
+                padding-top: 40px !important;
+                margin-top: 0 !important;
+                margin-bottom: 30px !important;
+            }
+            section .container {
+                padding-top: 0 !important;
+            }
+        }
+
+        /* Remove extra padding from blog, contact, education containers */
+        #blog .container, .contact .container, .education .container {
+            padding-top: 0 !important;
+        }
+
+        /* Add top padding to all sections for desktop to avoid navbar overlap */
+        section {
+            padding-top: 100px;
+        }
+
+        /* Remove padding-top from .section-title on desktop */
+        section .section-title {
+            padding-top: 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding-top: 80px !important;
+            }
+            section .section-title {
+                padding-top: 40px !important;
+            }
         }
     </style>
 </head>
